@@ -15,7 +15,7 @@ public static class Brendom
             ("Habilidades gerais de desenvolvimento", 3),
             ("HTTP / HTTPS", 3),
             ("MVC", 2),
-            ("ASP.NET", 2)
+            ("ASP.NET", 2),
             ("SQL Server", 2),
             ("MongoDB", 2),
             ("Selenium", 0),
