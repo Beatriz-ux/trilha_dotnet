@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DOTNET-P002", "DOTNET-P002\DOTNET-P002.csproj", "{F1D6AF7E-14BC-4D35-BF25-90ACDED88F17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{BA89701E-3828-41C0-A7C0-9548A773AC78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F1D6AF7E-14BC-4D35-BF25-90ACDED88F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D6AF7E-14BC-4D35-BF25-90ACDED88F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D6AF7E-14BC-4D35-BF25-90ACDED88F17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA89701E-3828-41C0-A7C0-9548A773AC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA89701E-3828-41C0-A7C0-9548A773AC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA89701E-3828-41C0-A7C0-9548A773AC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA89701E-3828-41C0-A7C0-9548A773AC78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

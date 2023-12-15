@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace DOTNET_P002
+namespace Domain
 {
     public static class Alberto{
         public static string Name => "Alberto Henrique";
