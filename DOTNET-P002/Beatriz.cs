@@ -7,10 +7,28 @@ public static class Beatriz
     public static string Name => "Beatriz Pereira";
     public static List<(string,int)> Skills => new List<(string, int)>
     {
-        ("Learn the basics of c#", 4),
-        ("General development skills", 4),
-        ("Database design basics", 3),
-        ("ASP.NET Core Basics", 2)
+        ("C#", 3),
+            ("Git - Controle de Versão", 5),
+            ("GitHub", 5),
+            ("Fundamentos de banco de dados", 4),
+            ("MySQL", 4),
+            ("Postgres", 3),
+            ("MongoDB", 0),
+            ("Estrutura de dados e algoritmos", 2),
+            ("Stored Procedures - SQL", 4),
+            (".NET", 3),
+            ("Habilidades gerais de desenvolvimento", 5),
+            ("HTTP / HTTPS", 3),
+            ("MVC", 3),
+            ("ASP.NET", 1),
+            ("SQL Server", 4),
+            ("MongoDB", 0),
+            ("MariaDB", 1),
+            ("PHP", 3),
+            ("JAVA", 3),
+            ("NODEJS", 5),
+            ("Blockchain", 1),
+            ("Redes", 3)
 
     };
     public static string View(){
