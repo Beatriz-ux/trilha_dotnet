@@ -7,8 +7,9 @@ namespace DOTNET_P002
         public static List<(string, int)> Skills => new List<(string, int)>{
             ("Learn the basics of c#", 5),
             ("General development Skills", 4),
-            ("Database fundamentals", 4)
-        }
+            ("Database fundamentals", 4),
+            ("ASP.NET Core Basics", 2)
+        };
 
         public static string View(){
             var sb = new StringBuilder();
@@ -16,7 +17,7 @@ namespace DOTNET_P002
             sb.AppendLine();
             sb.AppendLine("Habilidades:");
             foreach(var skill in Skills){
-                sb.AppendLine($"- {skill.Item1} ({skill.Item2}%)");
+                sb.AppendLine($"- {skill.Item1} ({skill.Item2})");
             }
             var sum = Skills.Sum(x => x.Item2);
             sb.AppendLine();
