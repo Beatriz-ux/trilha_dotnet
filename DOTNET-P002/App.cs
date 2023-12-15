@@ -10,6 +10,7 @@ public static class App
             (Brendom.Name, Brendom.Skills.Sum(x => x.Item2)),
             (Alberto.Name, Alberto.Skills.Sum(x => x.Item2)),
             (Alessandro.Name, Alessandro.Skills.Sum(x => x.Item2)),
+            (Lucas.Name, Lucas.Skills.Sum(x => x.Item2)),
         };
         // Ordenar os membros da equipe em ordem decrescente de estrelas totais
         var membrosOrdenados = membros.OrderByDescending(member => member.Item2);
