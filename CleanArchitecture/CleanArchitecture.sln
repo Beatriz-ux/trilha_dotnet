@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E7E26010-9530-481E-967D-19A6D1E53330}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{7A47778C-7577-436B-AB5C-0CCED0F81CDC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{86FFD4D9-1C75-47F5-90BB-9C15E9BD377D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5CDF1E90-6CA1-47F9-AAAD-2498F3612606}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Core\Domain\Domain.csproj", "{C7BA1621-CBAD-4611-A81C-DF0955638C0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7BA1621-CBAD-4611-A81C-DF0955638C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BA1621-CBAD-4611-A81C-DF0955638C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BA1621-CBAD-4611-A81C-DF0955638C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BA1621-CBAD-4611-A81C-DF0955638C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C7BA1621-CBAD-4611-A81C-DF0955638C0C} = {E7E26010-9530-481E-967D-19A6D1E53330}
+	EndGlobalSection
+EndGlobal
