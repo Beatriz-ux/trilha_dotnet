@@ -1,6 +1,6 @@
-# Trilha Dotnet Basica
- 
-<p> Repositorio destinado as praticas em grupo da trilha basica de dotnet, residencia TIC18 </p>
+# Prática P003 - Arquitetura Limpa
+
+#### Prática com intuito de treinar a criação e manipulação de aplicações web básicas em ASP.NET, utilizando a Arquitetura Limpa. A prática baseia-se no projeto proposto pelo [Prof. José Carlos Macoratti](https://www.youtube.com/@josecarlosmacoratti).
 
 ## Autores
 
