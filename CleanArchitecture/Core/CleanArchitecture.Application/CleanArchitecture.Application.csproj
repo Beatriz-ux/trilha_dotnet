@@ -1,21 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
-    <ProjectReference Include="..\CleanArchitecture.Domain\CleanArchitecture.Domain.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Domain\CleanArchitecture.Domain.csproj"/>
   </ItemGroup>
-
   <ItemGroup>
-    <Folder Include="UseCases/" />
-    <Folder Include="UseCases/CreateUser/" />
-    <Folder Include="UseCases/DeleteUser/" />
-    <Folder Include="UseCases/GetAllUser/" />
-    <Folder Include="UseCases/UpdateUser/" />
+    <Folder Include="UseCases/DeleteUser/"/>
+    <Folder Include="UseCases/GetAllUser/"/>
+    <Folder Include="UseCases/UpdateUser/"/>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0"/>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0"/>
+    <PackageReference Include="MediatR" Version="12.2.0"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1"/>
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
 </Project>
