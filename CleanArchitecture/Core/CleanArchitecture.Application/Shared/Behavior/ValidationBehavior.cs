@@ -3,37 +3,30 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Shared.Behavior;
 
-public sealed class ValidationBehavior<TRequest, TResponse> :
-                  IPipelineBehavior<TRequest, TResponse>
-                  where TRequest : IRequest<TResponse>
+public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+                                              where TRequest : IRequest<TResponse>
 {
-    private readonly IEnumerable<IValidator<TRequest>> _validators;
+    private readonly IValidator<TRequest> _validator;
 
-    public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
+    public ValidationBehavior(IValidator<TRequest> validator)
     {
-        _validators = validators;
+        _validator = validator;
     }
-
-    public async Task<TResponse> Handle(TRequest request,
-                                 RequestHandlerDelegate<TResponse> next,
-                                 CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse>
+                                                next, CancellationToken cancellationToken)
     {
-        if (!_validators.Any()) return await next();
-
-        var context = new ValidationContext<TRequest>(request);
-
-        if (_validators.Any())
+        // Verifique se a solicitação não requer validação
+        if (_validator is null)
         {
-            context = new ValidationContext<TRequest>(request);
-
-            var validationResults = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
-
-            var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
-
-            if (failures.Count != 0)
-                throw new FluentValidation.ValidationException(failures);
+            return await next();
         }
 
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+
+        if (!validationResult.IsValid)
+        {
+            throw new ValidationException(validationResult.Errors);
+        }
         return await next();
     }
 }

@@ -1,7 +1,6 @@
-namespace  CleanArchitecture.Domain.Interfaces
+namespace CleanArchitecture.Domain.Interfaces;
+
+public interface IUnitOfWork
 {
-    public interface IUnitOfWork
-    {
-        Task Commit(CancellationToken cancellationToken);
-    }
+    Task Commit(CancellationToken cancellationToken);
 }
