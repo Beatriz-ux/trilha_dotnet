@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CleanArchitecture.Domain.Entities;
 
-namespace CleanArchitecture.Application.UseCases.CreateUser;
-
-public sealed class CreateUserMapper : Profile
+namespace CleanArchitecture.Application.UseCases.CreateUser
 {
-    public CreateUserMapper()
+    public sealed class CreateUserMapper : Profile
     {
-        CreateMap<CreateUserRequest, User>();
-        CreateMap<User, CreateUserResponse>();
+        public CreateUserMapper()
+        {
+            CreateMap<CreateUserRequest, User>();
+            CreateMap<User, CreateUserResponse>();
+        }
     }
 }
+

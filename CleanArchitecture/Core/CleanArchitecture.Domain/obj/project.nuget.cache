@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r+lafxWhMddrIVB1WCsB52J2JD3T4dQVOCJlivAv3EROsEIgxdlTVQ4vSMODUylC5K3tGHYR83F8GBgBczLRiQ==",
+  "dgSpecHash": "zVqjVuUe7wVH5wn+nYX6XSRpBr9kA6vMqFgBUIJdaYxfBUQ3UFKaa/JYC6R4VzGlPWPcAr6fmBJL31PWaz4taw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj": {}
+    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj": {
+    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj",
         "projectName": "CleanArchitecture.Domain",
-        "projectPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj",
+        "projectPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj",
         "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Core\\CleanArchitecture.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alan\\AppData\\Roaming\\NuGet\\NuGet.Config"

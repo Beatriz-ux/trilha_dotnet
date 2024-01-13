@@ -1,8 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "eocjZQcT4NsQeGZ0rE9yT71mIlpYJkRTk/sL26z944pCi8o18MiTOQjD8H6smZM7tzqTMj31vRdBVH1x3/sNhA==",
+  "dgSpecHash": "kqVFZcOjhPaRAiwq9VTeSlrNIb51d+UadJA0wFri9s0wWyAoZby0lS7YSr5RvGpDVUysCENwYKWk/dIEkNnZFA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Core\\CleanArchitecture.Application\\CleanArchitecture.Application.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Core\\CleanArchitecture.Application\\CleanArchitecture.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alan\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.7.1\\fluentvalidation.dependencyinjectionextensions.11.7.1.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zwUy8hvMH5NlLTZ+iVTWcjNEZ1B7p1s22n6FonAPa05AKHdXrq3ylAMZAXA1mPS1YX7TuZS7+fyA2d3IZ4xHeA==",
+  "dgSpecHash": "gswVSJ62F5iH4fECnoV/VXhXTSrT9r+e4Sx9Ip5sgxW8iMSqIKRsiYkOgD7ysUdTrH5euSAl7T7L88whoNlkXw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alan\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\Alan\\.nuget\\packages\\microsoft.codecoverage\\17.7.1\\microsoft.codecoverage.17.7.1.nupkg.sha512",

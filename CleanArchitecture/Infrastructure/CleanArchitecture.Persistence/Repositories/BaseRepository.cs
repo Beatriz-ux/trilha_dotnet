@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore; 
+using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Domain.Interfaces;
+using CleanArchitecture.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Persitence.Repositories
+namespace CleanArchitecture.Persistence.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {

@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CleanArchitecture.Domain.Interfaces;
+using CleanArchitecture.Persistence.Context;
 
-namespace CleanArchitecture.Persitence.Repositories
+namespace CleanArchitecture.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

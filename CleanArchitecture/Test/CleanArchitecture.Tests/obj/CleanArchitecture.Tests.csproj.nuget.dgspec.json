@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj": {}
+    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj": {
+    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj",
         "projectName": "CleanArchitecture.Tests",
-        "projectPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj",
+        "projectPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\CleanArchitecture.Tests.csproj",
         "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\Arquitetura limpa\\CleanArchitecture\\Test\\CleanArchitecture.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alan\\AppData\\Roaming\\NuGet\\NuGet.Config"
