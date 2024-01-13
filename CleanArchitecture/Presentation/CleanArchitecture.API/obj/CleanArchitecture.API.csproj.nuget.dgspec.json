@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Presentation\\CleanArchitecture.API\\CleanArchitecture.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Presentation\\CleanArchitecture.API\\CleanArchitecture.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Presentation\\CleanArchitecture.API\\CleanArchitecture.API.csproj",
+        "projectName": "CleanArchitecture.API",
+        "projectPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Presentation\\CleanArchitecture.API\\CleanArchitecture.API.csproj",
+        "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alan\\OneDrive\\Documents\\ProjetosResidencia\\Dotnet\\Módulo II\\trilha_dotnet\\CleanArchitecture\\Presentation\\CleanArchitecture.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Alan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
