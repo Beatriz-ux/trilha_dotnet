@@ -6,3 +6,4 @@ public sealed class User : BaseEntity
     public  string? Name { get; set; }
 
 }
+
