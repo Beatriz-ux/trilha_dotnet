@@ -3,6 +3,8 @@ using MediatR;
 using CleanArchitecture.Aplication.UseCases.CreateUser;
 using CleanArchitecture.Aplication.UseCases.GetAllUser;
 using CleanArchitecture.Aplication.UseCases.UpdateUser;
+using CleanArchitecture.Aplication.UseCases.DeleteUser;
+
 namespace CleanArchitecture.API.Controllers{
     [Route("api/[controller]")]
     [ApiController]
@@ -45,6 +47,17 @@ namespace CleanArchitecture.API.Controllers{
             }
             
             var response = await _mediator.Send(request, cancellationToken);
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(Guid? id, CancellationToken cancellationToken){
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            var DeleteUserRequest = new DeleteUserRequest(id.Value);
+            var response = await _mediator.Send(DeleteUserRequest, cancellationToken);
             return Ok(response);
         }
 
