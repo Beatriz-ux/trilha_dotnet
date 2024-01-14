@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 
-namespace CleanArchitecture.Aplication;
+namespace CleanArchitecture.Aplication.Services;
 
 public static class ServiceExtensions
 {
