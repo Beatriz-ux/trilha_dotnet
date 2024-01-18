@@ -7,7 +7,5 @@ namespace ResTIConnect.Infra.Data.Context{
         {
             
         }
-
     }
-
 }
