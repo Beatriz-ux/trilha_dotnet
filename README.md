@@ -1,9 +1,7 @@
-# Pratica de .net P004
+# Pratica de .net P006
  
-<p> Conhecer o SGBD MySql através do desenvolvimento de um
-Modelo Entidade Relacionamento e, posterior, implementação
-dele. Além disso, estimular o trabalho em equipe através do Git
-Flow recomendado. </p>
+<p> Introduzir os conceitos do Entity Framework Core. Além disso,
+estimular o trabalho em equipe através do Git Flow recomendado </p>
 
 ## Autores
 
