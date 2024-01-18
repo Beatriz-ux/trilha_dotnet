@@ -7,10 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="ResTIConnect.Domain/" />
-    <Folder Include="ResTIConnect.Infrastructure/" />
-    <Folder Include="ResTIConnect.Tests/" />
-  </ItemGroup>
-
 </Project>
