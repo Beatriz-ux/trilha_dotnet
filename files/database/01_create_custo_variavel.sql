@@ -1,7 +1,7 @@
-create table Custo_Variavel{
+CREATE TABLE Custo_Variavel (
     idCustoVariavel INT AUTO_INCREMENT PRIMARY KEY,
-    valorVarivel double not null,
-    dataPlanejada date not null,
-    idConta int not null,
-    idCategoria int not null,
-}
+    valorVariavel DOUBLE NOT NULL,
+    dataPlanejada DATE NOT NULL,
+    idConta INT NOT NULL,
+    idCategoria INT NOT NULL
+);

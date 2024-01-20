@@ -1,8 +1,8 @@
-create table Custo_Fixo{
+CREATE TABLE Custo_Fixo (
     idGastoFixo INT AUTO_INCREMENT PRIMARY KEY,
-    valorParcelaFixo double not null,
-    dataProximaParcelaFixo date not null,
-    parcelasRestanresFixo int not null,
-    idConta int not null,
-    idCategoria int not null,
-}
+    valorParcelaFixo DOUBLE NOT NULL,
+    dataProximaParcelaFixo DATE NOT NULL,
+    parcelasRestanresFixo INT NOT NULL,
+    idConta INT NOT NULL,
+    idCategoria INT NOT NULL
+);
