@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using ResTIConnect.Infra.Data.Models;
 
 namespace ResTIConnect.Infra.Data.Context{
     public class AppDbContext : DbContext
     {
-
+        public DbSet<Logs> Logs { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
