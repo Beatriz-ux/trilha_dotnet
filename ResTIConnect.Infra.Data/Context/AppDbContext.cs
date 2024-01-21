@@ -5,8 +5,8 @@ namespace ResTIConnect.Infra.Data.Context
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Perfis> Perfis { get; set; }
-        public DbSet<Enderecos> Enderecos { get; set; }
+        public DbSet<Perfil> Perfis { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -19,6 +19,8 @@ namespace ResTIConnect.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Perfil>().ToTable("Perfis").HasKey(m => m.Id);
+            modelBuilder.Entity<Endereco>().ToTable("Enderecos").HasKey(p => p.Id);
         }
     }
 }

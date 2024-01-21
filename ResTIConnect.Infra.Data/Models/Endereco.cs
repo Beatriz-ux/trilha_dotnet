@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ResTIConnect.Infra.Data.Models
 {
-    public class Enderecos
+    public class Endereco
     {
         public int Id {get; set;}
         public string Logradouro {get; set;}

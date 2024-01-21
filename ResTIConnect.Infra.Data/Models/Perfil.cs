@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ResTIConnect.Infra.Data.Models
 {
-    public class Perfis
+    public class Perfil
     {
          public int Id { get; set; }
          public string Descricao {get; set;}
