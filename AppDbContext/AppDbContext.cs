@@ -1,7 +1,4 @@
-﻿namespace Context;
-
-using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
 using Entities;
 
 public class AppDbContext : DbContext
@@ -21,5 +18,21 @@ public class AppDbContext : DbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Conta>(entity =>
+            {
+                entity.HasKey(e => e.IdConta);
+                entity.Property(e => e.TipoConta).IsRequired();
+                entity.Property(e => e.SaldoConta).IsRequired();
+            });
+            modelBuilder.Entity<Usuario>(entity =>
+            {
+                entity.HasKey(e => e.IdUsuario);
+                entity.Property(e => e.NomeUsuario).IsRequired();
+                entity.Property(e => e.EmailUsuario).IsRequired();
+                entity.Property(e => e.SenhaUsuario).IsRequired();
+                entity.Property(e => e.IdConta).IsRequired();
+            });
+
+            
         }
 }
