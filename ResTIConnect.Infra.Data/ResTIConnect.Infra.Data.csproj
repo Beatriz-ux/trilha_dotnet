@@ -24,4 +24,8 @@
     <Folder Include="Migrations/" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ResTIConnect.Domain\ResTIConnect.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
