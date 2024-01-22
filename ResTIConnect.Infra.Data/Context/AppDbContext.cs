@@ -5,6 +5,7 @@ namespace ResTIConnect.Infra.Data.Context{
     public class AppDbContext : DbContext
     {
         public DbSet<Logs> Logs { get; set; }
+        public DbSet<Sistemas> Sistemas {get; set;}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -17,6 +18,8 @@ namespace ResTIConnect.Infra.Data.Context{
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Sistemas>().ToTable("Sistemas")
+                .HasKey(s => s.SistemaId);
         }
     }
 }
