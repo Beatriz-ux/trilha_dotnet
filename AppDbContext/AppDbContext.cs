@@ -5,6 +5,9 @@ public class AppDbContext : DbContext
 {
     public DbSet<Conta> Contas { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<CustoVariavel> CustoVariaveis { get; set; }
+    public DbSet<CustoFixo> CustoFixos { get; set; }
+    public DbSet<Transacao> Transacaos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,6 +36,46 @@ public class AppDbContext : DbContext
                 entity.Property(e => e.IdConta).IsRequired();
             });
 
+            modelBuilder.Entity<CustoFixo>(entity =>
+            {
+                entity.HasKey(e => e.IdCustoFixo);
+                entity.Property(e => e.ValorParcelaFixo).IsRequired();
+                entity.Property(e => e.DataProximaParcelaFixo).IsRequired();
+                entity.Property(e => e.ParcelasRestantesFixo).IsRequired();
+                entity.Property(e => e.IdConta).IsRequired();
+
+                entity.HasOne(e => e.Conta)
+                    .WithMany(c => c.CustosFixos)
+                    .HasForeignKey(e => e.IdConta)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<CustoVariavel>(entity =>
+            {
+                entity.HasKey(e => e.IdCustoVariavel);
+                entity.Property(e => e.ValorVariavel).IsRequired();
+                entity.Property(e => e.DataPlanejadaVariavel).IsRequired();
+                entity.Property(e => e.IdConta).IsRequired();
+
+                entity.HasOne(e => e.Conta)
+                    .WithMany(c => c.CustosVariaveis)
+                    .HasForeignKey(e => e.IdConta)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Transacao>(entity =>
+            {
+                entity.HasKey(e => e.IdTransacao);
+                entity.Property(e => e.ValorTransacao).IsRequired();
+                entity.Property(e => e.DataTransacao).IsRequired();
+                entity.Property(e => e.TipoTransacao);
+                entity.Property(e => e.IdConta).IsRequired();
+
+                entity.HasOne(e => e.Conta)
+                    .WithMany(c => c.Transacoes)
+                    .HasForeignKey(e => e.IdConta)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
             
         }
 }
