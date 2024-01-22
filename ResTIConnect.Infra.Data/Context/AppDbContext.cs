@@ -8,6 +8,7 @@ namespace ResTIConnect.Infra.Data.Context{
         public DbSet<Logs> Logs { get; set; }
         public DbSet<Sistemas> Sistemas {get; set;}
         public DbSet<Eventos> Eventos {get; set;}
+        public DbSet<Usuarios> Usuarios {get; set;}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -25,6 +26,9 @@ namespace ResTIConnect.Infra.Data.Context{
 
             modelBuilder.Entity<Eventos>().ToTable("Eventos")
                 .HasKey(e => e.EventoId);
+
+            modelBuilder.Entity<Usuarios>().ToTable("Usuarios")
+                .HasKey(u => u.UsuarioId);
         }
     }
 }
