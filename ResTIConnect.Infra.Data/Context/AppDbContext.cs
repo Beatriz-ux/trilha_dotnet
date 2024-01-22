@@ -12,7 +12,7 @@ namespace ResTIConnect.Infra.Data.Context{
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            var connectionString = "server=localhost;user=root;password=Bvg@2023;database=resticonnect;";
+            var connectionString = "server=localhost;user=resticonnect;password=Beto@9999;database=resticonnect;";
             var serverVersion = ServerVersion.AutoDetect(connectionString); // pega a versão do banco de dados
             
             optionsBuilder.UseMySql(connectionString, serverVersion);
