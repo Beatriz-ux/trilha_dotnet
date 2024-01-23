@@ -19,6 +19,58 @@ namespace ResTIConnect.Infra.Data.Migrations
                 .HasAnnotation("ProductVersion", "7.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+<<<<<<< HEAD
+            modelBuilder.Entity("ResTIConnect.Infra.Data.Models.Endereco", b =>
+                {
+                    b.Property<int>("EnderecoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Bairro")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Cep")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Complemento")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Logradouro")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Numero")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Pais")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("EnderecoId");
+
+                    b.ToTable("Enderecos", (string)null);
+                });
+
+            modelBuilder.Entity("ResTIConnect.Infra.Data.Models.Perfil", b =>
+                {
+                    b.Property<int>("PerfilId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Permissoes")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("PerfilId");
+
+                    b.ToTable("Perfis", (string)null);
+=======
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Eventos", b =>
                 {
                     b.Property<int>("EventoId")
@@ -112,6 +164,7 @@ namespace ResTIConnect.Infra.Data.Migrations
                     b.HasKey("SistemaId");
 
                     b.ToTable("Sistemas", (string)null);
+>>>>>>> 95bcda6653d5dbf4077010b94ee8020452389ee2
                 });
 #pragma warning restore 612, 618
         }
