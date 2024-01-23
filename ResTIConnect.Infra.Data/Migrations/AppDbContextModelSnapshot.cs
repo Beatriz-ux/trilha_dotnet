@@ -20,62 +20,52 @@ namespace ResTIConnect.Infra.Data.Migrations
 
             modelBuilder.Entity("ResTIConnect.Infra.Data.Models.Endereco", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EnderecoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Bairro")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Cep")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Cidade")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Complemento")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Estado")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Logradouro")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Numero")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Pais")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("EnderecoId");
 
                     b.ToTable("Enderecos", (string)null);
                 });
 
             modelBuilder.Entity("ResTIConnect.Infra.Data.Models.Perfil", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PerfilId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Permissoes")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("PerfilId");
 
                     b.ToTable("Perfis", (string)null);
                 });

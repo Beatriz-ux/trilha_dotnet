@@ -7,9 +7,9 @@ namespace ResTIConnect.Infra.Data.Models
 {
     public class Perfil
     {
-         public int Id { get; set; }
-         public string Descricao {get; set;}
-         public string Permissoes {get; set;}
+         public int PerfilId { get; set; }
+         public string? Descricao {get; set;}
+         public string? Permissoes {get; set;}
          
     }
 }

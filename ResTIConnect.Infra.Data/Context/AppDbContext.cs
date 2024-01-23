@@ -19,8 +19,8 @@ namespace ResTIConnect.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Perfil>().ToTable("Perfis").HasKey(m => m.Id);
-            modelBuilder.Entity<Endereco>().ToTable("Enderecos").HasKey(p => p.Id);
+            modelBuilder.Entity<Perfil>().ToTable("Perfis").HasKey(m => m.PerfilId);
+            modelBuilder.Entity<Endereco>().ToTable("Enderecos").HasKey(p => p.EnderecoId);
         }
     }
 }
