@@ -9,6 +9,8 @@ public class AppDbContext : DbContext
     public DbSet<CustoFixo> CustoFixos { get; set; }
     public DbSet<Transacao> Transacaos { get; set; }
 
+    //nova tabela custoTransacao
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -24,7 +26,8 @@ public class AppDbContext : DbContext
             modelBuilder.Entity<Conta>(entity =>
             {
                 entity.HasKey(e => e.IdConta);
-                entity.Property(e => e.TipoConta).IsRequired();
+                //cria chave estrangeira
+                entity.Property(e => e.TipoConta).IsRequired().f;
                 entity.Property(e => e.SaldoConta).IsRequired();
             });
             modelBuilder.Entity<Usuario>(entity =>
