@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Entities;
-
+namespace AppDbContext;
 public class AppDbContext : DbContext
 {
     public DbSet<Conta> Contas { get; set; }
@@ -9,10 +9,18 @@ public class AppDbContext : DbContext
     public DbSet<CustoFixo> CustoFixos { get; set; }
     public DbSet<Transacao> Transacaos { get; set; }
 
+    public DbSet<Investimento> Investimentos { get; set; }
+    public DbSet<Objetivo> Objetivo { get; set; }
+    public DbSet<ObjetivoInvestimento> ObjetivoInvestimentos { get; set; }
+
+
+    //nova tabela custoTransacao
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            var connectionString = "server=localhost;user=projetopessoal;password=Beto@9999;database=projetopessoal;";
+            //var connectionString = "server=localhost;user=usuario;password=Beto@9999;database=projetopessoal;";
+            var connectionString = "server=192.168.3.205;user=usuario;password=Beto@9999;database=projetopessoal;";
             var serverVersion = ServerVersion.AutoDetect(connectionString);
             
             optionsBuilder.UseMySql(connectionString, serverVersion);
@@ -77,5 +85,13 @@ public class AppDbContext : DbContext
                     .OnDelete(DeleteBehavior.Cascade);
             });
             
+            modelBuilder.Entity<Investimento>(entity =>{
+                    entity.HasKey(e => e.IdInvestimento); //chave pimaria
+
+                    entity.HasMany(e => e.Objetivos)
+                    .WithMany(e => e.Investimentos);
+
+
+            });
         }
 }
