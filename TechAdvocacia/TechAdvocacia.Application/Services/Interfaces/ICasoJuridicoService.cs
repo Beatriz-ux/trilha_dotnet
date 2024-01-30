@@ -7,7 +7,7 @@ public interface ICasoJuridicoService
 {
    public List<CasoJuridicoViewModel> GetAll();
    public CasoJuridicoViewModel? GetById(int id);
-   public List<CasoJuridicoViewModel> GetByPacienteId(int pacienteId);
-   public List<CasoJuridicoViewModel> GetByMedicoId(int medicoId);
-   public int Create(NewCasoJuridicoInputModel atendimento);
+   public int Create(NewCasoJuridicoInputModel casojuridico);
+   public void Update(int Id,NewCasoJuridicoInputModel casojuridico);
+   public void Delete(int id);
 }

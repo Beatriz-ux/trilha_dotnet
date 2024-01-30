@@ -1,64 +1,111 @@
 ﻿using TechAdvocacia.Application.InputModel;
 using TechAdvocacia.Application.ViewModel;
 using TechAdvocacia.Application.Services.Interfaces;
-using TechAdvocacia.Infrastructure.Persistence.Interfaces;
+using TechAdvocacia.Infrastructure.Persistence;
+using TechAdvocacia.Core.Entities;
 
 namespace TechAdvocacia.Application.Services;
 
-public class CasoJuridicoService : BaseService, ICasoJuridicoService
+public class CasoJuridicoService : ICasoJuridicoService
 {
     private readonly IClienteService _clienteService;
     private readonly IAdvogadoService _advogadoService;
     private readonly IDocumentoService _documentoService;
 
-    public CasoJuridicoService(ITechMedContext context, IClienteService clienteService, IAdvogadoService advogadoService, IDocumentoService documentoService) : base(context)
+    private readonly TechAdvocaciaDbContext _context;
+
+    public CasoJuridicoService(TechAdvocaciaDbContext context, IClienteService clienteService, IAdvogadoService advogadoService, IDocumentoService documentoService)
     {
         _clienteService = clienteService;
         _advogadoService = advogadoService;
         _documentoService = documentoService;
+        _context = context;
     }
 
     public int Create(NewCasoJuridicoInputModel casoJuridico)
     {
-        return _advogadoService.CreateAtendimento(casoJuridico.AdvogadoId, casoJuridico);
+        var _casoJuridico = new CasoJuridico
+        {
+            Abertura = casoJuridico.Abertura,
+            ClienteId = casoJuridico.ClienteId,
+            AdvogadoId = casoJuridico.AdvogadoId,
+            DocumentoId = casoJuridico.DocumentoId
+        };
+
+        _context.CasosJuridicos.Add(_casoJuridico);
+
+        _context.SaveChanges();
+
+        return _casoJuridico.CasoJuridicoId;
     }
 
     public List<CasoJuridicoViewModel> GetAll()
     {
-        return _context.CasoJuridicoCollection.GetAll().Select(a => new CasoJuridicoViewModel
+        var _casosJuridicos = _context.CasosJuridicos.ToList();
+        var _casosJuridicosViewModel = new List<CasoJuridicoViewModel>();
+        foreach (var _casoJuridico in _casosJuridicos)
         {
-            CasoJuridicoId = a.CasoJuridicoId,
-            DataAbertura = a.Abertura,
-            Cliente = new ClienteViewModel
+            var _casoJuridicoViewModel = new CasoJuridicoViewModel
             {
-                ClienteId = a.Cliente.ClienteId,
-                // Nome = a.Medico.Nome
-            },
-            Advogado = new AdvogadoViewModel
-            {
-                AdvogadoId = a.Advogado.AdvogadoId,
-                //Nome = a.Paciente.Nome
-            },
-            Documento = new DocumentoViewModel
-            {
-                DocumentoId = a.Documento.DocumentoId,
-                //Nome = a.Paciente.Nome
-            },
-        }).ToList();
+                CasoJuridicoId = _casoJuridico.CasoJuridicoId,
+                Abertura = _casoJuridico.Abertura,
+                Cliente = _clienteService.GetById(_casoJuridico.ClienteId),
+                Advogado = _advogadoService.GetById(_casoJuridico.AdvogadoId),
+                Documento = _documentoService.GetById(_casoJuridico.DocumentoId)
+            };
+            _casosJuridicosViewModel.Add(_casoJuridicoViewModel);
+        }
+        return _casosJuridicosViewModel;
     }
 
-    public AtendimentoViewModel? GetById(int id)
+    public CasoJuridicoViewModel? GetById(int id)
     {
-        throw new NotImplementedException();
+        var _casoJuridico = _context.CasosJuridicos.Find(id);
+        if (_casoJuridico == null) return null;
+        var _casoJuridicoViewModel = new CasoJuridicoViewModel
+        {
+            CasoJuridicoId = _casoJuridico.CasoJuridicoId,
+            Abertura = _casoJuridico.Abertura,
+            Cliente = _clienteService.GetById(_casoJuridico.ClienteId),
+            Advogado = _advogadoService.GetById(_casoJuridico.AdvogadoId),
+            Documento = _documentoService.GetById(_casoJuridico.DocumentoId)
+        };
+        return _casoJuridicoViewModel;
 
     }
-    public List<AtendimentoViewModel> GetByMedicoId(int medicoId)
+    
+    CasoJuridicoViewModel? ICasoJuridicoService.GetById(int id)
     {
-        throw new NotImplementedException();
+        var _casoJuridico = _context.CasosJuridicos.Find(id);
+        if (_casoJuridico == null) return null;
+
+        var _casoJuridicoViewModel = new CasoJuridicoViewModel
+        {
+            CasoJuridicoId = _casoJuridico.CasoJuridicoId,
+            Abertura = _casoJuridico.Abertura,
+            Cliente = _clienteService.GetById(_casoJuridico.ClienteId),
+            Advogado = _advogadoService.GetById(_casoJuridico.AdvogadoId),
+            Documento = _documentoService.GetById(_casoJuridico.DocumentoId)
+        };
+
+        return _casoJuridicoViewModel;
     }
 
-    public List<AtendimentoViewModel> GetByPacienteId(int pacienteId)
+    public void Update(int Id, NewCasoJuridicoInputModel casoJuridico)
     {
-        throw new NotImplementedException();
+        var _casoJuridico = _context.CasosJuridicos.Find(Id);
+        if (_casoJuridico == null) return;
+        _casoJuridico.Abertura = casoJuridico.Abertura;
+        _casoJuridico.ClienteId = casoJuridico.ClienteId;
+        _casoJuridico.AdvogadoId = casoJuridico.AdvogadoId;
+        _casoJuridico.DocumentoId = casoJuridico.DocumentoId;
+        _context.SaveChanges();
     }
+
+    public void Delete(int id)
+    {
+        _context.CasosJuridicos.Remove(_context.CasosJuridicos.Find(id));
+    }
+
+   
 }

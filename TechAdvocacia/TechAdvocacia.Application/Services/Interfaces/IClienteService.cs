@@ -1,6 +1,8 @@
 ﻿using System.Data.Common;
+using TechAdvocacia.Application.ViewModels;
 using TechAdvocacia.Application.InputModels;
-namespace TechAdvocacia.Application;
+
+namespace TechAdvocacia.Application.Services.Interfaces;
 
 public interface IClienteService 
 {
@@ -9,7 +11,7 @@ public interface IClienteService
     public int Create(NewClienteInputModel cliente);
     public void Update(int Id,NewClienteInputModel cliente);
     public void Delete(int id);
-    
+
     
 
 }

@@ -12,8 +12,12 @@ public class TechAdvocaciaDbContext :  DbContext
 
     public TechAdvocaciaDbContext(DbContextOptions<TechAdvocaciaDbContext> options) : base(options)
     {
+        Database.EnsureCreated();
     }
 
-
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(TechAdvocaciaDbContext).Assembly);
+    }
 
 }

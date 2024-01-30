@@ -2,7 +2,7 @@
 
 namespace TechAdvocacia.Application.Services.Interfaces;
 
-public interface IAdvogado
+public interface IAdvogadoService
 {
     public List<AdvogadoViewModel> GetAll();
     public AdvogadoViewModel? GetById(int id);

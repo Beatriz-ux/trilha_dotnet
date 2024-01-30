@@ -1,9 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using TechAdvocacia.Application.Services;
+using TechAdvocacia.Application.Services.Interfaces;
 using TechAdvocacia.Core.Entities;
 using TechAdvocacia.Infrastructure.Persistence;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IClienteService, ClienteService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<TechAdvocaciaDbContext>(options => {

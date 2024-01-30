@@ -1,4 +1,4 @@
-﻿namespace TechAdvocacia.Application.InputModels;
+﻿namespace TechAdvocacia.Application.ViewModels;
 
 public class ClienteViewModel
 {

@@ -1,4 +1,5 @@
 ﻿using TechAdvocacia.Application.InputModels;
+using TechAdvocacia.Application.ViewModels;
 using TechAdvocacia.Application.Services.Interfaces;
 using TechAdvocacia.Core.Entities;
 using TechAdvocacia.Infrastructure.Persistence;
