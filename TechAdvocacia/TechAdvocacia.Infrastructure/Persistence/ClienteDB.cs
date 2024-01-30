@@ -14,6 +14,7 @@ public class ClienteDB : ICliente
             _id = _clientes.Max(x => x.ClienteId);
         }
         cliente.ClienteId = _id++;
+        cliente.Nome = cliente.Nome;
         _clientes.Add(cliente);
 
         return cliente.ClienteId;
