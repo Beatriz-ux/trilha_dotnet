@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\TechAdvocacia.Core\TechAdvocacia.Core.csproj" />
     <ProjectReference Include="..\TechAdvocacia.Infrastructure\TechAdvocacia.Infrastructure.csproj" />
   </ItemGroup>
 
