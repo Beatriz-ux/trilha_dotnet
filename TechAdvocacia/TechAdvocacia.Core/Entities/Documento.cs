@@ -1,4 +1,4 @@
-namespace TechAdvocacia.Core.Entites;
+namespace TechAdvocacia.Core.Entities;
 public class Documento : BaseEntity
 {
     public int DocumentoId { get; set; }

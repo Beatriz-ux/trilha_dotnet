@@ -1,6 +1,4 @@
-﻿using TechAdvocacia.Core.Entities;
-
-namespace TechAdvocacia.Core;
+﻿namespace TechAdvocacia.Core.Entities;
 
 public class Cliente : Pessoa
 {
