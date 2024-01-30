@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechAdvocacia.Core", "TechAdvocacia.Core\TechAdvocacia.Core.csproj", "{A6A6551B-7EB3-41E5-BE49-726A74FF85E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechAdvocacia.Infrastructure", "TechAdvocacia.Infrastructure\TechAdvocacia.Infrastructure.csproj", "{931936DA-1131-4E16-A481-BD76CFE318ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A6A6551B-7EB3-41E5-BE49-726A74FF85E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6A6551B-7EB3-41E5-BE49-726A74FF85E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6A6551B-7EB3-41E5-BE49-726A74FF85E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{931936DA-1131-4E16-A481-BD76CFE318ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{931936DA-1131-4E16-A481-BD76CFE318ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{931936DA-1131-4E16-A481-BD76CFE318ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{931936DA-1131-4E16-A481-BD76CFE318ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
