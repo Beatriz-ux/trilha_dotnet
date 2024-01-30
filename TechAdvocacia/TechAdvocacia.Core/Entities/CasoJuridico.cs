@@ -1,6 +1,7 @@
 ﻿namespace TechAdvocacia.Core.Entities;
+using System.Collections.Generic;
 
-public class CasoJuridico
+public class CasoJuridico : BaseEntity
 {
     public DateTime Abertura { get; set; }
     public float ProbabilidadeSucesso { get; set; }
