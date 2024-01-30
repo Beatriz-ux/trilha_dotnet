@@ -11,5 +11,21 @@ public class CasoJuridicoConfigurations : IEntityTypeConfiguration<CasoJuridico>
         builder
             .ToTable("CasoJuridico")
             .HasKey(x => x.CasoJuridicoId);
+
+         builder
+         .HasOne(x => x.Advogado)
+         .WithMany(x => x.CasosJuridicos)
+         .HasForeignKey(x => x.CasoJuridicoId);
+
+         builder
+         .HasOne(x => x.Cliente)
+         .WithMany(x => x.CasosJuridicos)
+         .HasForeignKey(x => x.CasoJuridicoId);
+
+         builder
+         .HasOne(x => x.Documento)
+         .WithMany(x => x.CasosJuridicos)
+         .HasForeignKey(x => x.CasoJuridicoId);
+
     }
 }
