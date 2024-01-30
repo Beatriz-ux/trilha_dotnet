@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class CasoJuridico : BaseEntity
 {
+    public int CasoJuridicoId {get; set;}
     public DateTime Abertura { get; set; }
     public float ProbabilidadeSucesso { get; set; }
     public List<Documento> ListaDocumentos { get; set; }
