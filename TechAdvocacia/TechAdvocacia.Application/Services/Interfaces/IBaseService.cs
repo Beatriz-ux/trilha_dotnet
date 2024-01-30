@@ -1,7 +1,9 @@
-namespace TechAdvocacia.Application.Services.Interfaces;
-public interface IBaseService<TViewModel, TInputModel>
-    where TViewModel : class
-    where TInputModel : class
+namespace TechAdvocacia.Application.Services;
+public interface IBaseService<T, X>
 {
-   
+      public List<T> GetAll();
+      public T? GetById(int id);
+      public int Create(X objeto);
+      public void Update(int id, X objeto);
+      public void Delete(int id);
 }
