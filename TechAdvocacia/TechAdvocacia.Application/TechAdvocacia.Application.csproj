@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InputModels/" />
     <Folder Include="Services/" />
-    <Folder Include="ViewModels/" />
+    <Folder Include="Services/Interfaces/" />
   </ItemGroup>
 
 </Project>
