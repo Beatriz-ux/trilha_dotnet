@@ -15,7 +15,7 @@ public class ClienteService : IClienteService
     public int Create(NewClienteInputModel cliente)
     {
         var _cliente = new Cliente{
-            
+
             Nome = cliente.Nome
         };
         _dbContext.Clientes.Add(_cliente);
@@ -26,21 +26,43 @@ public class ClienteService : IClienteService
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        _dbContext.Clientes.Remove(_dbContext.Clientes.Find(id));
     }
 
     public List<ClienteViewModel> GetAll()
     {
-        throw new NotImplementedException();
+        var _clientes = _dbContext.Clientes.ToList();
+        var _clientesViewModel = new List<ClienteViewModel>();
+        foreach (var _cliente in _clientes)
+        {
+            var _clienteViewModel = new ClienteViewModel{
+                ClienteId = _cliente.ClienteId,
+                Nome = _cliente.Nome
+            };
+            _clientesViewModel.Add(_clienteViewModel);
+        }
+        return _clientesViewModel;
+        
     }
 
     public ClienteViewModel? GetById(int id)
     {
-        throw new NotImplementedException();
+        var _cliente = _dbContext.Clientes.Find(id);
+        if(_cliente == null) return null;
+        var _clienteViewModel = new ClienteViewModel{
+            ClienteId = _cliente.ClienteId,
+            Nome = _cliente.Nome
+        };
+        return _clienteViewModel;
     }
 
     public void Update(int Id, NewClienteInputModel cliente)
     {
-        throw new NotImplementedException();
+        var _cliente = _dbContext.Clientes.Find(Id);
+        if(_cliente == null) return;
+        _cliente.Nome = cliente.Nome;
+        _dbContext.SaveChanges();
+        
+
     }
 }
