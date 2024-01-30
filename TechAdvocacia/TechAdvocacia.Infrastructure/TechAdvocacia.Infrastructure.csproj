@@ -4,10 +4,6 @@
     <ProjectReference Include="..\TechAdvocacia.Core\TechAdvocacia.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Persistence/Configurations/" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
