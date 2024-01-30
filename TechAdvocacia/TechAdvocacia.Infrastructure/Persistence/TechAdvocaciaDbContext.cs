@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechAdvocacia.Core.Entities;
 
-namespace TechAdvocacia.Infrastructure;
+namespace TechAdvocacia.Infrastructure.Persistence;
 
 public class TechAdvocaciaDbContext :  DbContext
 {
