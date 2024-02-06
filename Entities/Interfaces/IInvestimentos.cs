@@ -1,8 +1,8 @@
-﻿namespace Entities.Interfaces;
+﻿// namespace Entities.Interfaces;
 
-public interface IInvestimentos : IBaseEntity<Investimento>
-{
+// public interface IInvestimentos : IBaseEntity<Investimento>
+// {
 
 
 
-}
+// }
