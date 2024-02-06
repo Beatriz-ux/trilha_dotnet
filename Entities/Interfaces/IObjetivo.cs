@@ -1,6 +1,6 @@
-﻿namespace Entities.Interfaces;
+﻿// namespace Entities.Interfaces;
 
-public interface IObjetivo : IBaseEntity<Objetivo>
-{
+// public interface IObjetivo : IBaseEntity<Objetivo>
+// {
 
-}
+// }

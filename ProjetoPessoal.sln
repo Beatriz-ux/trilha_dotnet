@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{EC
 		..\..\..\Downloads\Diagrama.jpeg = ..\..\..\Downloads\Diagrama.jpeg
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{E452B960-2B1B-426B-914B-5CDB76DD2B8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financa.Core", "Entities\Financa.Core.csproj", "{E452B960-2B1B-426B-914B-5CDB76DD2B8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDbContext", "AppDbContext\AppDbContext.csproj", "{0750C527-AFE9-42AD-89AD-325841CF3BC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financa.Infrastructure", "AppDbContext\Financa.Infrastructure.csproj", "{0750C527-AFE9-42AD-89AD-325841CF3BC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financa.WebAPI", "Financa.WebAPI\Financa.WebAPI.csproj", "{E53AB42F-2A8F-4D6C-B8C8-1ACB4AF5396E}"
 EndProject
