@@ -1,4 +1,13 @@
 # Pratica de .net P004 - Gestão Financeira Pessoal
+## Endpoints
+- Categoria:
+    [HttpGet("Categoria")]: Exibir todas as categorias que foram cadastradas
+    [HttpGet("Clientes/{id}")]: Exibir uma determinada categoria a partir do Id
+    [HttpPost("Clientes")]: Recebe as informações para cadastrar uma nova Categoria
+    [HttpDelete("Clientes/{id}")]: Apaga uma categoria por id
+
+
+    
 
 ## Visão Geral
 Este projeto tem como objetivo auxiliar os usuários na gestão de suas finanças pessoais. Ele permitirá registrar entradas e saídas de dinheiro, agendar gastos futuros, lidar com gastos parcelados e muito mais.
