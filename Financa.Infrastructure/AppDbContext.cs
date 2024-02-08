@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Financa.Core.Entities;
-namespace AppDbContext;
+namespace Financa.Infrastructure;
+
 public class AppDbContext : DbContext
 {
     public DbSet<Conta> Contas { get; set; }
@@ -18,8 +19,8 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        //var connectionString = "server=localhost;user=usuario;password=Beto@9999;database=projetopessoal;";
-        var connectionString = "server=192.168.1.77;user=usuario;password=Beto@9999;database=projetopessoal;";
+        var connectionString = "server=localhost;user=usuario;password=Beto@9999;database=projetopessoal;";
+        //var connectionString = "server=192.168.1.77;user=usuario;password=Beto@9999;database=projetopessoal;";
         var serverVersion = ServerVersion.AutoDetect(connectionString);
 
         optionsBuilder.UseMySql(connectionString, serverVersion);
