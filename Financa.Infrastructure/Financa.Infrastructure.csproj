@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Entities/Financa.Core.csproj" />
+    <ProjectReference Include="..\Financa.Core\Financa.Core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

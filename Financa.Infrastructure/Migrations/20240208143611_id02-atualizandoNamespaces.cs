@@ -4,23 +4,67 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AppDbContext.Migrations
+namespace Financa.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Criando_Entidades_Investimento_Objetivo : Migration
+    public partial class id02atualizandoNamespaces : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
-                name: "IdConta",
-                table: "Contas",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "char(36)")
-                .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
-                .OldAnnotation("Relational:Collation", "ascii_general_ci");
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Contas",
+                columns: table => new
+                {
+                    IdConta = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    TipoConta = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SaldoConta = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contas", x => x.IdConta);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Objetivo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Objetivo", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    IdUsuario = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    NomeUsuario = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EmailUsuario = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SenhaUsuario = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IdConta = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.IdUsuario);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "CustoFixos",
@@ -95,21 +139,6 @@ namespace AppDbContext.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Objetivo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Objetivo", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Transacaos",
                 columns: table => new
                 {
@@ -120,17 +149,17 @@ namespace AppDbContext.Migrations
                     TipoTransacao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     IdConta = table.Column<int>(type: "int", nullable: false),
-                    IdCategoria = table.Column<int>(type: "int", nullable: false)
+                    IdCategoria = table.Column<int>(type: "int", nullable: false),
+                    ContaIdConta = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transacaos", x => x.IdTransacao);
                     table.ForeignKey(
-                        name: "FK_Transacaos_Contas_IdConta",
-                        column: x => x.IdConta,
+                        name: "FK_Transacaos_Contas_ContaIdConta",
+                        column: x => x.ContaIdConta,
                         principalTable: "Contas",
-                        principalColumn: "IdConta",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdConta");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -159,35 +188,6 @@ namespace AppDbContext.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "ObjetivoInvestimentos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdObjetivo = table.Column<int>(type: "int", nullable: false),
-                    IdInvestimento = table.Column<int>(type: "int", nullable: false),
-                    ObjetivoId = table.Column<int>(type: "int", nullable: false),
-                    InvestimentoIdInvestimento = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ObjetivoInvestimentos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ObjetivoInvestimentos_Investimentos_InvestimentoIdInvestimen~",
-                        column: x => x.InvestimentoIdInvestimento,
-                        principalTable: "Investimentos",
-                        principalColumn: "IdInvestimento",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ObjetivoInvestimentos_Objetivo_ObjetivoId",
-                        column: x => x.ObjetivoId,
-                        principalTable: "Objetivo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateIndex(
                 name: "IX_CustoFixos_IdConta",
                 table: "CustoFixos",
@@ -209,19 +209,9 @@ namespace AppDbContext.Migrations
                 column: "ContaIdConta");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ObjetivoInvestimentos_InvestimentoIdInvestimento",
-                table: "ObjetivoInvestimentos",
-                column: "InvestimentoIdInvestimento");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ObjetivoInvestimentos_ObjetivoId",
-                table: "ObjetivoInvestimentos",
-                column: "ObjetivoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transacaos_IdConta",
+                name: "IX_Transacaos_ContaIdConta",
                 table: "Transacaos",
-                column: "IdConta");
+                column: "ContaIdConta");
         }
 
         /// <inheritdoc />
@@ -237,10 +227,10 @@ namespace AppDbContext.Migrations
                 name: "InvestimentoObjetivo");
 
             migrationBuilder.DropTable(
-                name: "ObjetivoInvestimentos");
+                name: "Transacaos");
 
             migrationBuilder.DropTable(
-                name: "Transacaos");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Investimentos");
@@ -248,15 +238,8 @@ namespace AppDbContext.Migrations
             migrationBuilder.DropTable(
                 name: "Objetivo");
 
-            migrationBuilder.AlterColumn<Guid>(
-                name: "IdConta",
-                table: "Contas",
-                type: "char(36)",
-                nullable: false,
-                collation: "ascii_general_ci",
-                oldClrType: typeof(int),
-                oldType: "int")
-                .OldAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+            migrationBuilder.DropTable(
+                name: "Contas");
         }
     }
 }
