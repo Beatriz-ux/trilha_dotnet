@@ -10,5 +10,7 @@ namespace TechMed.Core.Entities
 
         public int PacienteId { get; set; }
         public string DataNascimento { get; set; }
+
+        public ICollection<Atendimento>? Atendimentos {get;}
     }
 }

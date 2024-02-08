@@ -16,5 +16,6 @@ namespace TechMed.Core.Entities
         public string ResultadoDescricao { get; set; }
 
         public int AtendimentoId { get; set; }
+        public Atendimento Atendimento { get; set; } = null!;
     }
 }
