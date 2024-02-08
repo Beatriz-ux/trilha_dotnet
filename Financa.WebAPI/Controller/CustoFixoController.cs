@@ -4,109 +4,115 @@ using Financa.Core.Interfaces;
 using Financa.Entities;
 using Financa.Infrastructure.Persistence;
 
-namespace Financa.WebAPI.Controller
+namespace Financa.WebAPI.Controller;
+
+[ApiController]
+[Route("api/[controller]")]
+public class CustoFixoController : ControllerBase
 {
-    public class CustoFixoController : ControllerBase
+    private readonly ICustoFixoCollection _custoFixo;
+    public List<CustoFixo> _custosFixos = new List<CustoFixo>();
+
+    public CustoFixoController(DataBaseFake dbFake)
     {
-        private readonly ICustoFixoCollection _custoFixo;
-        public List<CustoFixo> _custosFixos = new List<CustoFixo>();
+        _custoFixo = dbFake.CustoFixoCollection;
+    }
 
-        public CustoFixoController(DataBaseFake dbFake)
+    [HttpGet()]
+    public IActionResult Get()
+    {
+        try
         {
-            _custoFixo = dbFake.CustoFixoCollection;
+            var custosFixos = _custoFixo.GetAll().ToList();
+            return Ok(custosFixos);
         }
-
-        [HttpGet("{custoFixo}")]
-        public IActionResult Get()
+        catch (Exception ex)
         {
-            try
+            return BadRequest($"Erro: {ex.Message}");
+        }
+    }
+
+    [HttpGet("{custoFixoId}")]
+    public IActionResult GetByCustoFixoId(int custoFixoId)
+    {
+        try
+        {
+            var custoFixo =  _custoFixo.GetById(custoFixoId);
+            return Ok(custoFixo);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Erro: {ex.Message}");
+        }
+    }
+
+    [HttpPost()]
+    public IActionResult Post([FromBody] CustoFixo model)
+    {
+        try
+        {
+            _custoFixo.Create(model);
+
+            if (_custoFixo != null)
             {
-                var custosFixos = _custoFixo.GetAll().ToList();
-                return Ok(custosFixos);
+                return Ok(model);
             }
-            catch (Exception ex)
+            else
             {
-                return BadRequest($"Erro: {ex.Message}");
+                return BadRequest("Erro ao tentar criar um custo fixo.");
             }
         }
-
-        [HttpGet("{custoFixoId}")]
-        public IActionResult GetByCustoFixoId(int custoFixoId)
+        catch (Exception ex)
         {
-            try
+            return BadRequest($"Erro: {ex.Message}");
+        }
+    }
+
+    [HttpPut("{custoFixoId}")]
+    public IActionResult Put([FromBody] CustoFixo model)
+    {
+        try
+        {
+            var custoFixo = _custoFixo.GetById(model.IdCustoFixo);
+            if (custoFixo != null)
             {
-                var custoFixo =  _custoFixo.GetById(custoFixoId);
+                custoFixo.ValorParcelaFixo = model.ValorParcelaFixo;
+                custoFixo.DataProximaParcelaFixo = model.DataProximaParcelaFixo;
+                custoFixo.ParcelasRestantesFixo = model.ParcelasRestantesFixo;
+                custoFixo.IdCategoria = model.IdCategoria;
+                _custoFixo.Update(custoFixo);
                 return Ok(custoFixo);
             }
-            catch (Exception ex)
+            else
             {
-                return BadRequest($"Erro: {ex.Message}");
+                return BadRequest("Custo fixo não encontrado.");
             }
         }
-
-        [HttpPost("{custoFixo}")]
-        public IActionResult Post([FromBody] CustoFixo model)
+        catch (Exception ex)
         {
-            try
-            {
-                _custoFixo.Create(model);
+            return BadRequest($"Erro: {ex.Message}");
+        }
+    }
 
-                if (_custoFixo != null)
-                {
-                    return Ok(model);
-                }
-                else
-                {
-                    return BadRequest("Erro ao tentar criar um custo fixo.");
-                }
-            }
-            catch (Exception ex)
+    [HttpDelete("{custoFixoId}")]
+    public IActionResult Delete(int custoFixoId)
+    {
+        try
+        {
+            var custoFixo = _custoFixo.GetById(custoFixoId);
+            if (custoFixo != null)
             {
-                return BadRequest($"Erro: {ex.Message}");
+                _custoFixo.Delete(custoFixo);
+                return Ok("Custo fixo deletado com sucesso.");
+            }
+            else
+            {
+                return BadRequest("Custo fixo não encontrado.");
             }
         }
-
-        [HttpPut("{custoFixoId}")]
-        public IActionResult Put([FromBody] CustoFixo model)
+        catch (Exception ex)
         {
-            try
-            {
-                var custoFixo = _custoFixo.GetById(model.IdCustoFixo);
-                if (custoFixo != null)
-                {
-                    
-                }
-                else
-                {
-                    return BadRequest("Custo fixo não encontrado.");
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro: {ex.Message}");
-            }
-        }
-
-        [HttpDelete("{custoFixoId}")]
-        public IActionResult Delete(int custoFixoId)
-        {
-            try
-            {
-                var custoFixo = _custoFixo.GetById(custoFixoId
-                if (custoFixo != null)
-                {
-                    _custoFixo.Delete(custoFixo);
-                    return Ok("Custo fixo deletado com sucesso.");
-                }
-                else
-                {
-                    return BadRequest("Custo fixo não encontrado.");
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro: {ex.Message}");
-            }
+            return BadRequest($"Erro: {ex.Message}");
         }
     }
 }
