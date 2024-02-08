@@ -6,5 +6,6 @@ namespace Financa.Infrastructure.Persistence;
 public class DataBaseFake
 {
     public ICategoriaCollection CategoriaCollection { get; } = new CategoriaDB();
+    public ICustoFixoCollection CustoFixoCollection { get; } = new CustoFixoDB();
 
 }
