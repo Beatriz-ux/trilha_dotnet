@@ -18,8 +18,8 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //var connectionString = "server=localhost;user=usuario;password=Beto@9999;database=projetopessoal;";
-            var connectionString = "server=192.168.3.205;user=usuario;password=Beto@9999;database=projetopessoal;";
+            var connectionString = "server=localhost;user=usuario;password=Beto@9999;database=projetopessoal;";
+            //var connectionString = "server=192.168.1.77;user=usuario;password=Beto@9999;database=projetopessoal;";
             var serverVersion = ServerVersion.AutoDetect(connectionString);
             
             optionsBuilder.UseMySql(connectionString, serverVersion);
