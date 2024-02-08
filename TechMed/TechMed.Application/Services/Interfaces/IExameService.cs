@@ -1,6 +1,6 @@
 ﻿namespace TechMed.Application;
 
-public class Class1
+public class IExameService
 {
 
 }
