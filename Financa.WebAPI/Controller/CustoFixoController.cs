@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Entities;
+using Financa.Core.Entities;
 using Financa.Core.Interfaces;
-using Financa.Entities;
 using Financa.Infrastructure.Persistence;
 
 namespace Financa.WebAPI.Controller;

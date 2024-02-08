@@ -1,4 +1,4 @@
-using Entities;
+using Financa.Core.Entities;
 
 namespace Financa.Core.Interfaces
 {

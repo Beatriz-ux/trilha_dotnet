@@ -1,7 +1,7 @@
 ﻿using Financa.Core.Interfaces;
 using Financa.Core.Entities;
 
-namespace Financa.Infrastructure;
+namespace Financa.Infrastructure.Persistence.DataBase;
 
 public class CategoriaDB : ICategoriaCollection
 {
