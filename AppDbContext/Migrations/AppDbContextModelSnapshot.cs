@@ -170,9 +170,9 @@ namespace AppDbContext.Migrations
 
             modelBuilder.Entity("Financa.Core.Entities.Usuario", b =>
                 {
-                    b.Property<Guid>("IdUsuario")
+                    b.Property<int>("IdUsuario")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("int");
 
                     b.Property<string>("EmailUsuario")
                         .IsRequired()
