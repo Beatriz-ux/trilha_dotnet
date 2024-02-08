@@ -1,6 +1,6 @@
 ﻿using System.Dynamic;
 
-namespace TechMed.Application.InputModel
+namespace TechMed.Application.InputModels
 {
     public class NewMedicoInputModel
     {

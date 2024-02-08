@@ -1,4 +1,4 @@
-﻿namespace TechMed.Application.InputModel
+﻿namespace TechMed.Application.InputModels
 {
     public class NewAtendimentoInputModel
     {
