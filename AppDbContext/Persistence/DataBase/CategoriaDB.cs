@@ -1,5 +1,5 @@
 ﻿using Financa.Core.Interfaces;
-using Financa.Entities;
+using Financa.Core.Entities;
 
 namespace Financa.Infrastructure;
 

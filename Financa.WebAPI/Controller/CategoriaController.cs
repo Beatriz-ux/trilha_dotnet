@@ -1,7 +1,6 @@
 ﻿﻿using Microsoft.AspNetCore.Mvc;
-using Entities;
+using Financa.Core.Entities;
 using Financa.Core.Interfaces;
-using Financa.Entities;
 using Financa.Infrastructure.Persistence;
 namespace Financa.WebAPI.Controller;
 
@@ -10,7 +9,6 @@ namespace Financa.WebAPI.Controller;
 public class CategoriaController : ControllerBase
 {
     private readonly ICategoriaCollection _categoria;
-    public List<Categoria> _categorias = new List<Categoria>();
 
 
     public CategoriaController(DataBaseFake dbFake)
@@ -18,7 +16,7 @@ public class CategoriaController : ControllerBase
         _categoria = dbFake.CategoriaCollection;
     }
 
-    [HttpGet]
+    [HttpGet ("categoria")]
     public IActionResult Get()
     {
         try
@@ -46,7 +44,7 @@ public class CategoriaController : ControllerBase
         }
     }
 
-    [HttpPost]
+    [HttpPost ("categoria")]
     public IActionResult Post([FromBody] Categoria model)
     {
         try

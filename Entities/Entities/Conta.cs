@@ -1,4 +1,4 @@
-﻿namespace Entities;
+﻿namespace Financa.Core.Entities;
 public class Conta
 {
     public int IdConta { get; set; }
