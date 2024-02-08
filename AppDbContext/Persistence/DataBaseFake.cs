@@ -7,6 +7,7 @@ public class DataBaseFake
 {
     public ICategoriaCollection CategoriaCollection { get; } = new CategoriaDB();
     public ITransacaoCollection TransacaoCollection { get; }
+    public IUsuarioCollection UsuarioCollection { get; } = new UsuarioDB();
 
     public DataBaseFake()
     {
