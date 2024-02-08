@@ -1,4 +1,4 @@
-﻿namespace Financa.Entities;
+﻿namespace Financa.Core.Entities;
 
 public class Categoria
 {

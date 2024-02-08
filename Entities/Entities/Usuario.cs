@@ -1,4 +1,4 @@
-﻿namespace Entities;
+﻿namespace Financa.Core.Entities;
 public class Usuario
 {
     public Guid IdUsuario { get; set; }

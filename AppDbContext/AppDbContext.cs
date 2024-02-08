@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities;
+using Financa.Core.Entities;
 namespace AppDbContext;
 public class AppDbContext : DbContext
 {
@@ -11,7 +11,6 @@ public class AppDbContext : DbContext
 
     public DbSet<Investimento> Investimentos { get; set; }
     public DbSet<Objetivo> Objetivo { get; set; }
-    public DbSet<ObjetivoInvestimento> ObjetivoInvestimentos { get; set; }
 
 
     //nova tabela custoTransacao
@@ -79,10 +78,6 @@ public class AppDbContext : DbContext
                 entity.Property(e => e.TipoTransacao);
                 entity.Property(e => e.IdConta).IsRequired();
 
-                entity.HasOne(e => e.Conta)
-                    .WithMany(c => c.Transacoes)
-                    .HasForeignKey(e => e.IdConta)
-                    .OnDelete(DeleteBehavior.Cascade);
             });
             
             modelBuilder.Entity<Investimento>(entity =>{

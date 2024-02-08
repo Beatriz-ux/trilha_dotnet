@@ -1,4 +1,4 @@
-﻿namespace Entities;
+﻿namespace Financa.Core.Entities;
 
 public class Transacao
 {
@@ -8,15 +8,6 @@ public class Transacao
     public string? TipoTransacao { get; set; }
     public int IdConta { get; set; }
     public int IdCategoria { get; set; }
-    public Conta Conta { get; set; }
-
-    //list do outra tabela intermediaria
-
-
-    /*
-    transacaoESeila id
-    public id de cada uma
     
-    */
 
 }
