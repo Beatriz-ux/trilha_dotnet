@@ -8,6 +8,7 @@ public class DataBaseFake
     public ICategoriaCollection CategoriaCollection { get; } = new CategoriaDB();
     public ITransacaoCollection TransacaoCollection { get; }
     public IUsuarioCollection UsuarioCollection { get; } = new UsuarioDB();
+    public IContaCollection ContaCollection { get; } = new ContaDB();
 
     public DataBaseFake()
     {
