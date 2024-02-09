@@ -18,8 +18,6 @@ namespace ResTIConnect.Infra.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-<<<<<<< HEAD
             modelBuilder.Entity("ResTIConnect.Infra.Data.Models.Endereco", b =>
                 {
                     b.Property<int>("EnderecoId")
@@ -57,20 +55,21 @@ namespace ResTIConnect.Infra.Data.Migrations
 
             modelBuilder.Entity("ResTIConnect.Infra.Data.Models.Perfil", b =>
                 {
-                    b.Property<int>("PerfilId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                b.Property<int>("PerfilId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    b.Property<string>("Descricao")
-                        .HasColumnType("longtext");
+                b.Property<string>("Descricao")
+                    .HasColumnType("longtext");
 
-                    b.Property<string>("Permissoes")
-                        .HasColumnType("longtext");
+                b.Property<string>("Permissoes")
+                    .HasColumnType("longtext");
 
-                    b.HasKey("PerfilId");
+                b.HasKey("PerfilId");
 
-                    b.ToTable("Perfis", (string)null);
-=======
+                b.ToTable("Perfis", (string)null);
+        });
+
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Eventos", b =>
                 {
                     b.Property<int>("EventoId")
@@ -164,7 +163,6 @@ namespace ResTIConnect.Infra.Data.Migrations
                     b.HasKey("SistemaId");
 
                     b.ToTable("Sistemas", (string)null);
->>>>>>> 95bcda6653d5dbf4077010b94ee8020452389ee2
                 });
 #pragma warning restore 612, 618
         }
