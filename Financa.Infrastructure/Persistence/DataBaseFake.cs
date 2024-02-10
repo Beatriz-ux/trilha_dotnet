@@ -17,4 +17,6 @@ public class DataBaseFake
     }
     public ICustoFixoCollection CustoFixoCollection { get; } = new CustoFixoDB();
 
+    public ICustoVariavelCollection CustoVariavelCollection { get; } = new CustoVariavelDB();
+
 }
