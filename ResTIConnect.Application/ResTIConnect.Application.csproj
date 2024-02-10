@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InputModels/" />
-    <Folder Include="Services/" />
-    <Folder Include="Services/Interfaces/" />
-    <Folder Include="ViewModels/" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ResTIConnect.Domain\ResTIConnect.Domain.csproj" />
     <ProjectReference Include="..\ResTIConnect.Infra.Data\ResTIConnect.Infra.Data.csproj" />
   </ItemGroup>
