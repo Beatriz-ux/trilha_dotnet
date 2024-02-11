@@ -19,5 +19,6 @@ public class DataBaseFake
 
     public ICustoVariavelCollection CustoVariavelCollection { get; } = new CustoVariavelDB();
     public IObjetivo ObjetivoCollection { get; } = new ObjetivoDB();
+    public IInvestimentos InvestimentosCollection { get; } = new InvestimentoDB();
 
 }
