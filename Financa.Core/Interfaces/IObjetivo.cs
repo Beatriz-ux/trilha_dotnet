@@ -1,6 +1,8 @@
-﻿// namespace Entities.Interfaces;
+﻿using Financa.Core.Entities;
 
-// public interface IObjetivo : IBaseEntity<Objetivo>
-// {
+namespace Financa.Core.Interfaces;
 
-// }
+public interface IObjetivo : IBaseCollection<Objetivo>
+{
+
+}
