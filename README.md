@@ -2,9 +2,46 @@
 ## Endpoints
 - Categoria:
     [HttpGet("Categoria")]: Exibir todas as categorias que foram cadastradas
-    [HttpGet("Clientes/{id}")]: Exibir uma determinada categoria a partir do Id
-    [HttpPost("Clientes")]: Recebe as informações para cadastrar uma nova Categoria
-    [HttpDelete("Clientes/{id}")]: Apaga uma categoria por id
+    [HttpGet("Categoria/{id}")]: Exibir uma determinada categoria a partir do Id
+    [HttpPost("Categoria")]: Recebe as informações para cadastrar uma nova Categoria
+    [HttpDelete("Categoria/{id}")]: Apaga uma categoria por id
+- Conta:
+    [HttpGet("Conta")]: Exibir todas as contas que foram cadastradas
+    [HttpGet("Conta/{id}")]: Exibir uma determinada conta a partir do Id
+    [HttpPost("Conta")]: Recebe as informações para cadastrar uma nova Conta
+    [HttpDelete("Conta/{id}")]: Apaga uma conta por id
+
+- Custo Fixo e Custo Variavel:
+    [HttpGet("Custo")]: Exibir todas as custos que foram cadastradas
+    [HttpGet("Custo/{id}")]: Exibir uma determinada custo a partir do Id
+    [HttpPost("Custo")]: Recebe as informações para cadastrar uma nova custo
+    [HttpDelete("Custo/{id}")]: Apaga uma custo por id
+    [HttpPut]
+
+- Investimento:
+    [HttpGet("Investimento")]: Exibir todos os investimentos que foram cadastradas
+    [HttpGet("Investimento/{id}")]: Exibir uma determinado investimento a partir do Id
+    [HttpPost("Investimento")]: Recebe as informações para cadastrar um novo investimento
+    [HttpDelete("Investimento/{id}")]: Apaga um investimento por id
+
+- Objetivo:
+    [HttpGet("objetivo")]: Exibir todos os objetivos que foram cadastradas
+    [HttpGet("objetivo/{id}")]: Exibir um determinado objetivo a partir do Id
+    [HttpPost("objetivo")]: Recebe as informações para cadastrar um novo objetivo
+    [HttpDelete("objetivo/{id}")]: Apaga um objetivo por id
+
+- Transacao:
+    [HttpGet("transação")]: Exibir todas as transações que foram cadastradas
+    [HttpGet("transação/{id}")]: Exibir uma determinada transação a partir do Id
+    [HttpPost("transação")]: Recebe as informações para cadastrar uma nova transação
+    [HttpDelete("transação/{id}")]: Apaga uma transação por id
+
+- Usuario:
+    [HttpGet("usuario")]: Exibir todos os usuarios que foram cadastradas
+    [HttpGet("usuario/{id}")]: Exibir uma determinado usuario a partir do Id
+    [HttpPost("usuario")]: Recebe as informações para cadastrar um novo usuario
+    [HttpDelete("usuario/{id}")]: Apaga um usuario por id
+    [HttpPut("{usuarioId}")] : Atualiza um usuario
 
 
     
