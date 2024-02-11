@@ -1,5 +1,0 @@
-CREATE TABLE conta (
-    idConta INT AUTO_INCREMENT PRIMARY KEY,
-    tipoConta VARCHAR(255) NOT NULL,
-    saldoConta DECIMAL(10,2) NOT NULL
-);
