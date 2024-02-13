@@ -25,8 +25,8 @@ public class UsuarioService : IUsuarioService
             UsuarioId = u.UsuarioId,
             Nome = u.Nome,
             Email = u.Email,
-           Endereco = _enderecoService.GetById(u.EnderecoId) ?? new EnderecoViewModel()
-   
+            Endereco = _enderecoService.GetByIdWithoutUsers(u.EnderecoId) ?? new EnderecoUserViewModel()
+
         }).ToList();
     }
 
@@ -42,7 +42,8 @@ public class UsuarioService : IUsuarioService
             UsuarioId = usuario.UsuarioId,
             Nome = usuario.Nome,
             Email = usuario.Email,
-            Endereco =  _enderecoService.GetById(usuario.EnderecoId) ?? new EnderecoViewModel()
+            Endereco = _enderecoService.GetByIdWithoutUsers(usuario.EnderecoId) ?? new EnderecoUserViewModel()
+
 
         };
     }
@@ -63,7 +64,7 @@ public class UsuarioService : IUsuarioService
             Endereco = endereco,
             EnderecoId = endereco.EnderecoId
         };
-        if(endereco.Usuarios == null)
+        if (endereco.Usuarios == null)
         {
             endereco.Usuarios = new List<Usuarios>();
         }
