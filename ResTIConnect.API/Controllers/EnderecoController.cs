@@ -55,7 +55,14 @@ public class EnderecoController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        _enderecoService.Delete(id);
+        try
+        {
+            _enderecoService.Delete(id);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
         return NoContent();
     }
 
