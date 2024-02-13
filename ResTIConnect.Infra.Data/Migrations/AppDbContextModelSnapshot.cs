@@ -94,7 +94,7 @@ namespace ResTIConnect.Infra.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("EnderecoId")
+                    b.Property<int>("EnderecoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -175,9 +175,13 @@ namespace ResTIConnect.Infra.Data.Migrations
 
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Usuarios", b =>
                 {
-                    b.HasOne("ResTIConnect.Domain.Entities.Endereco", null)
+                    b.HasOne("ResTIConnect.Domain.Entities.Endereco", "Endereco")
                         .WithMany("Usuarios")
-                        .HasForeignKey("EnderecoId");
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Endereco", b =>

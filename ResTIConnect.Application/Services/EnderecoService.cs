@@ -8,7 +8,7 @@ namespace ResTIConnect.Application.Services;
 
 public class EnderecoService : IEnderecoService
 {
-    private readonly  AppDbContext _context;
+    private readonly AppDbContext _context;
 
     public EnderecoService(AppDbContext context)
     {
@@ -41,6 +41,8 @@ public class EnderecoService : IEnderecoService
 
     public int Create(NewEnderecoInputModel endereco)
     {
+        var usuariosEncontrados = _context.Usuarios.Where(u => endereco.IdsUsuarios.Contains(u.UsuarioId)).ToList();/*talvez fosse uma boa usar o proprio metodo de buscar por id*/
+
         var novoEndereco = new Endereco
         {
             Logradouro = endereco.Logradouro,
@@ -50,8 +52,21 @@ public class EnderecoService : IEnderecoService
             Bairro = endereco.Bairro,
             Estado = endereco.Estado,
             Cep = endereco.Cep,
-            Pais = endereco.Pais
+            Pais = endereco.Pais,
+
+
+
+
         };
+        if (usuariosEncontrados != null)
+        {
+            novoEndereco.Usuarios = usuariosEncontrados;
+            foreach (var usuario in usuariosEncontrados)
+            {
+                usuario.Endereco = novoEndereco;
+                usuario.EnderecoId = novoEndereco.EnderecoId;
+            }
+         };
         _context.Enderecos.Add(novoEndereco);
         _context.SaveChanges();
         return novoEndereco.EnderecoId;

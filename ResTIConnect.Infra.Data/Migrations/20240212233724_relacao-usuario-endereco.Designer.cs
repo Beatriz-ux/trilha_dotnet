@@ -11,8 +11,8 @@ using ResTIConnect.Infra.Data.Context;
 namespace ResTIConnect.Infra.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240212000741_atualizacao_endereco")]
-    partial class atualizacao_endereco
+    [Migration("20240212233724_relacao-usuario-endereco")]
+    partial class relacaousuarioendereco
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,7 +97,7 @@ namespace ResTIConnect.Infra.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("EnderecoId")
+                    b.Property<int>("EnderecoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -178,9 +178,13 @@ namespace ResTIConnect.Infra.Data.Migrations
 
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Usuarios", b =>
                 {
-                    b.HasOne("ResTIConnect.Domain.Entities.Endereco", null)
+                    b.HasOne("ResTIConnect.Domain.Entities.Endereco", "Endereco")
                         .WithMany("Usuarios")
-                        .HasForeignKey("EnderecoId");
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Endereco", b =>

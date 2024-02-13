@@ -10,13 +10,18 @@ namespace ResTIConnect.Infra.Data.Context
         public DbSet<Perfil> Perfis { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Logs> Logs { get; set; }
-        public DbSet<Sistemas> Sistemas {get; set;}
-        public DbSet<Eventos> Eventos {get; set;}
-        public DbSet<Usuarios> Usuarios {get; set;}
+        public DbSet<Sistemas> Sistemas { get; set; }
+        public DbSet<Eventos> Eventos { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
+
+        public void EnsureDatabaseCreated()
+        {
+            Database.EnsureCreated();
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            var connectionString = "server=10.100.15.213;user=usuario;password=Beto@9999;database=resticonnect;";
+            var connectionString = "server=192.168.3.213;user=usuario;password=Beto@9999;database=resticonnect;";
             var serverVersion = ServerVersion.AutoDetect(connectionString); // pega a versão do banco de dados
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
@@ -32,6 +37,11 @@ namespace ResTIConnect.Infra.Data.Context
                 .HasKey(e => e.EventoId);
             modelBuilder.Entity<Usuarios>().ToTable("Usuarios")
                 .HasKey(u => u.UsuarioId);
+
+            modelBuilder.Entity<Usuarios>()
+        .HasOne(u => u.Endereco)
+        .WithMany(e => e.Usuarios)
+        .HasForeignKey(u => u.EnderecoId);
         }
     }
 }
