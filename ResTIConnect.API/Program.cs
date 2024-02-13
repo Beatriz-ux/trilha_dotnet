@@ -7,6 +7,7 @@ using ResTIConnect.Infra.Data.Context;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>();
