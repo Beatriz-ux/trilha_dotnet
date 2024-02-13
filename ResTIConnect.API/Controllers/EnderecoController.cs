@@ -3,7 +3,7 @@ using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 
 namespace ResTIConnect.API.Controllers;
-
+[ApiController]
 public class EnderecoController : ControllerBase
 {
     private readonly IEnderecoService _enderecoService;
