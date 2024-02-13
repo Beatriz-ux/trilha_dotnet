@@ -3,12 +3,16 @@ using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
 using ResTIConnect.Domain.Entities;
 using ResTIConnect.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ResTIConnect.Application.Services;
 
 public class EnderecoService : IEnderecoService
 {
-    private readonly  AppDbContext _context;
+    private readonly AppDbContext _context;
 
     public EnderecoService(AppDbContext context)
     {
@@ -18,26 +22,25 @@ public class EnderecoService : IEnderecoService
     public List<EnderecoViewModel> GetAll()
     {
         var enderecos = _context.Enderecos.ToList();
-        return enderecos.Select(e => new EnderecoViewModel
-        {
-            EnderecoId = e.EnderecoId,
-            EnderecoCompleto = $"{e.Logradouro}, {e.Numero}, {e.Cidade}, {e.Estado}"
-        }).ToList();
+        return enderecos.Select(e => GetById(e.EnderecoId) ?? new EnderecoViewModel()).ToList();
     }
 
     public EnderecoViewModel? GetById(int id)
     {
-        var endereco = _context.Enderecos.Find(id);
+        var endereco = _context.Enderecos.Include(e => e.Usuarios).FirstOrDefault(e => e.EnderecoId == id);
         if (endereco == null)
         {
             return null;
         }
+
         return new EnderecoViewModel
         {
             EnderecoId = endereco.EnderecoId,
-            EnderecoCompleto = $"{endereco.Logradouro}, {endereco.Numero}, {endereco.Cidade}, {endereco.Estado}"
+            EnderecoCompleto = $"{endereco.Logradouro}, {endereco.Numero}, {endereco.Cidade}, {endereco.Estado}",
+            UsuariosId = endereco.Usuarios != null ? endereco.Usuarios.Select(u => u.UsuarioId).ToList() : new List<int>(9999)
         };
     }
+
 
     public int Create(NewEnderecoInputModel endereco)
     {
@@ -50,7 +53,7 @@ public class EnderecoService : IEnderecoService
             Bairro = endereco.Bairro,
             Estado = endereco.Estado,
             Cep = endereco.Cep,
-            Pais = endereco.Pais
+            Pais = endereco.Pais,
         };
         _context.Enderecos.Add(novoEndereco);
         _context.SaveChanges();
@@ -85,5 +88,21 @@ public class EnderecoService : IEnderecoService
         _context.Enderecos.Remove(endereco);
         _context.SaveChanges();
     }
+
+    public EnderecoUserViewModel? GetByIdWithoutUsers(int id)
+    {
+       var endereco = _context.Enderecos.Include(e => e.Usuarios).FirstOrDefault(e => e.EnderecoId == id);
+        if (endereco == null)
+        {
+            return null;
+        }
+
+        return new EnderecoUserViewModel
+        {
+            EnderecoId = endereco.EnderecoId,
+            EnderecoCompleto = $"{endereco.Logradouro}, {endereco.Numero}, {endereco.Cidade}, {endereco.Estado}"
+        };
+    }
+
 
 }

@@ -12,6 +12,6 @@ public class Endereco
     public string? Cep { get; set; }
     public string? Pais { get; set; }
 
-    public ICollection<Usuarios>? Usuarios { get; }
+    public ICollection<Usuarios>? Usuarios { get; set; }
 
 }

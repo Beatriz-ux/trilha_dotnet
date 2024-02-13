@@ -3,7 +3,7 @@ using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 
 namespace ResTIConnect.API.Controllers;
-
+[ApiController]
 public class EnderecoController : ControllerBase
 {
     private readonly IEnderecoService _enderecoService;
@@ -34,8 +34,15 @@ public class EnderecoController : ControllerBase
     [HttpPost ("api/endereco")]
     public IActionResult Post([FromBody] NewEnderecoInputModel endereco)
     {
-        var id = _enderecoService.Create(endereco);
-        return CreatedAtAction(nameof(Get), new { id = id }, endereco);
+        try
+        {
+            var id = _enderecoService.Create(endereco);
+            return CreatedAtAction(nameof(Get), new { id = id }, endereco);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpPut("{id}")]
