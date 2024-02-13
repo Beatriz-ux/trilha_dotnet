@@ -89,5 +89,20 @@ public class EnderecoService : IEnderecoService
         _context.SaveChanges();
     }
 
+    public EnderecoUserViewModel? GetByIdWithoutUsers(int id)
+    {
+       var endereco = _context.Enderecos.Include(e => e.Usuarios).FirstOrDefault(e => e.EnderecoId == id);
+        if (endereco == null)
+        {
+            return null;
+        }
+
+        return new EnderecoUserViewModel
+        {
+            EnderecoId = endereco.EnderecoId,
+            EnderecoCompleto = $"{endereco.Logradouro}, {endereco.Numero}, {endereco.Cidade}, {endereco.Estado}"
+        };
+    }
+
 
 }
