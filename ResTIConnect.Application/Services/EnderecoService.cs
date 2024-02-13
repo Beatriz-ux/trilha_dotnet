@@ -80,10 +80,14 @@ public class EnderecoService : IEnderecoService
 
     public void Delete(int id)
     {
-        var endereco = _context.Enderecos.Find(id);
+        var endereco = _context.Enderecos.Include(e => e.Usuarios).FirstOrDefault(e => e.EnderecoId == id);//ao usar um ICollection, o Include é necessário pois o EF não carrega automaticamente os dados relacionados
         if (endereco == null)
         {
             throw new Exception("Endereço não encontrado");
+        }
+        if (endereco.Usuarios != null && endereco.Usuarios.Count > 0)
+        {
+            throw new Exception("Endereço não pode ser excluído pois está associado a um ou mais usuários");
         }
         _context.Enderecos.Remove(endereco);
         _context.SaveChanges();
