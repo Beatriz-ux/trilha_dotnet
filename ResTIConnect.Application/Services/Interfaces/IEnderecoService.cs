@@ -11,4 +11,6 @@ public interface IEnderecoService
     public void Update(int id, NewEnderecoInputModel endereco);
     public void Delete(int id);
 
+    public EnderecoUserViewModel? GetByIdWithoutUsers(int id);
+
 }
