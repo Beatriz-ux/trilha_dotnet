@@ -4,7 +4,7 @@
     {
         public DateTime DataHoraInicio {get; set;}
         public string SuspeitaInicial {get; set;}
-        public Decimal DataHoraFim {get; set;}
+        public DateTime DataHoraFim {get; set;}
         public string Diagnostico {get; set;}
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

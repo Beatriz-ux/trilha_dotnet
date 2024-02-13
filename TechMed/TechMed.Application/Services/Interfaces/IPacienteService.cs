@@ -1,4 +1,4 @@
-﻿namespace TechMed.Application.Service.Interfaces;
+﻿namespace TechMed.Application.Services.Interfaces;
 using TechMed.Application.InputModels;
 using TechMed.Application.ViewModels;
 

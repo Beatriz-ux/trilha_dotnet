@@ -11,4 +11,9 @@
     <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TechMed.Core\TechMed.Core\TechMed.Core.csproj" />
+    <ProjectReference Include="..\TechMed.Infra\TechMed.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
