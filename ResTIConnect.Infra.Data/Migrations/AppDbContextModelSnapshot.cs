@@ -153,7 +153,7 @@ namespace ResTIConnect.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logs");
+                    b.ToTable("Logs", (string)null);
                 });
 
             modelBuilder.Entity("ResTIConnect.Infra.Data.Models.Perfil", b =>
@@ -185,7 +185,7 @@ namespace ResTIConnect.Infra.Data.Migrations
 
                     b.HasIndex("UsuariosUsuarioId");
 
-                    b.ToTable("SistemaUsuarios");
+                    b.ToTable("SistemaUsuarios", (string)null);
                 });
 
             modelBuilder.Entity("ResTIConnect.Domain.Entities.Usuarios", b =>

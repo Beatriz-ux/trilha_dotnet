@@ -11,5 +11,5 @@ public class SistemaViewModel
     public DateTimeOffset DataHoraInicioIntegracao {get; set;}
     public string? Status {get; set;}
     
-    public required List<int> UsuariosId { get; set; }
+    public List<int> UsuariosId { get; set; }
 }

@@ -23,7 +23,7 @@ public class SistemaService : ISistemaService
     public SistemaViewModel? GetById(int id)
     {
         var sistema = _context.Sistemas.Include(s => s.Usuarios).FirstOrDefault(s => s.SistemaId == id);
-        if(sistema == null)
+        if (sistema == null)
         {
             throw new Exception("Sistema não encontrado");
         }
@@ -38,13 +38,14 @@ public class SistemaService : ISistemaService
             Protocolo = sistema.Protocolo,
             DataHoraInicioIntegracao = sistema.DataHoraInicioIntegracao,
             Status = sistema.Status,
-            
+
             UsuariosId = sistema.Usuarios != null ? sistema.Usuarios.Select(u => u.UsuarioId).ToList() : new List<int>()
         };
     }
     public int Create(NewSistemaInputModel sistema)
     {
-        var _sistema = new Sistema{
+        var _sistema = new Sistema
+        {
             Descricao = sistema.Descricao,
             Tipo = sistema.Tipo,
             EnderecoEntrada = sistema.EnderecoEntrada,
@@ -52,7 +53,7 @@ public class SistemaService : ISistemaService
             Protocolo = sistema.Protocolo,
             DataHoraInicioIntegracao = sistema.DataHoraInicioIntegracao,
             Status = sistema.Status,
-            Usuarios = sistema.UsuariosId.Select(id => new Usuarios{UsuarioId = id}).ToList()
+            Usuarios = sistema.UsuariosId.Select(id => new Usuarios { UsuarioId = id }).ToList()
         };
         _context.Sistemas.Add(_sistema);
         _context.SaveChanges();
@@ -61,11 +62,11 @@ public class SistemaService : ISistemaService
     public void Delete(int id)
     {
         var sistema = _context.Sistemas.Include(e => e.Usuarios).FirstOrDefault(s => s.SistemaId == id);
-        if(sistema == null)
+        if (sistema == null)
         {
             throw new Exception("Sistema não encontrado");
         }
-        if(sistema.Usuarios != null && sistema.Usuarios.Count > 0)
+        if (sistema.Usuarios != null && sistema.Usuarios.Count > 0)
         {
             throw new Exception("Sistema não pode ser excluído, pois possui usuários associados");
         }
@@ -75,7 +76,7 @@ public class SistemaService : ISistemaService
     public void Update(int id, NewSistemaInputModel sistema)
     {
         var _sistema = _context.Sistemas.Find(id);
-        if(_sistema == null)
+        if (_sistema == null)
         {
             throw new Exception("Sistema não encontrado");
         }

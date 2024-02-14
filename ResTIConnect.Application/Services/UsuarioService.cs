@@ -35,15 +35,16 @@ public class UsuarioService : IUsuarioService
         var usuario = _context.Usuarios.Find(id);
         if (usuario == null)
         {
-            return null;
+            throw new Exception("Usuário não encontrado");
         }
         return new UsuarioViewModel
         {
             UsuarioId = usuario.UsuarioId,
             Nome = usuario.Nome,
             Email = usuario.Email,
+            
             Endereco = _enderecoService.GetByIdWithoutUsers(usuario.EnderecoId) ?? new EnderecoUserViewModel(),
-            SistemasId = usuario.Sistemas.Select(s => s.SistemaId).ToList()
+            SistemasId = usuario.Sistemas != null ? usuario.Sistemas.Select(s => s.SistemaId).ToList() : new List<int>()
         };
     }
 
@@ -61,7 +62,8 @@ public class UsuarioService : IUsuarioService
             Senha = usuario.Senha,
             Telefone = usuario.Telefone,
             Endereco = endereco,
-            EnderecoId = endereco.EnderecoId
+            EnderecoId = endereco.EnderecoId,
+            Sistemas = usuario.SistemasId.Select(id => new Sistema { SistemaId = id }).ToList()
         };
         if (endereco.Usuarios == null)
         {
@@ -104,6 +106,4 @@ public class UsuarioService : IUsuarioService
         _context.Usuarios.Remove(usuario);
         _context.SaveChanges();
     }
-
-
 }

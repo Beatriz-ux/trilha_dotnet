@@ -7,6 +7,7 @@ public class NewUsuarioInputModel
     public string Email { get; set; }
     public string Senha { get; set; }
     public string Telefone { get; set; }
-    public int EnderecoId { get; set; }
 
+    public int EnderecoId { get; set; }
+    public List<int> SistemasId {get; set;}
 }

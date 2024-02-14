@@ -7,5 +7,5 @@ public class UsuarioViewModel
     public string Email { get; set; }
     
     public EnderecoUserViewModel Endereco { get; set; }
-    public required List<int> SistemasId { get; set; }
+    public List<int> SistemasId { get; set; }
 }
