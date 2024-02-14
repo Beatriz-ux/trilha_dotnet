@@ -1,6 +1,6 @@
-﻿namespace ResTIConnect.Infra.Data.Models;
+﻿namespace ResTIConnect.Domain.Entities;
 
-public class Sistemas
+public class Sistema : BaseEntity
 {
     public int SistemaId { get; set; }
     public string? Descricao { get; set; }
@@ -10,4 +10,6 @@ public class Sistemas
     public string? Protocolo { get; set; }
     public DateTimeOffset DataHoraInicioIntegracao { get; set; }
     public string? Status { get; set; }
+    
+    public ICollection<Usuarios>? Usuarios { get; set; }
 }

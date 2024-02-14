@@ -10,4 +10,6 @@ public class SistemaViewModel
     public string? Protocolo {get; set;}
     public DateTimeOffset DataHoraInicioIntegracao {get; set;}
     public string? Status {get; set;}
+    
+    public required List<int> UsuariosId { get; set; }
 }

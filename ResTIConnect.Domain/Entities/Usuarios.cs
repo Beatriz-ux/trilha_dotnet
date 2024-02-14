@@ -10,4 +10,5 @@ public class Usuarios : BaseEntity
     public int EnderecoId { get; set; }
 
     public Endereco? Endereco { get; set; }
+    public ICollection<Sistema>? Sistemas { get; set; }
 }
