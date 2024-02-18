@@ -45,6 +45,11 @@ namespace ResTIConnect.Infra.Data.Context
             modelBuilder.Entity<Sistema>(entity => {
                 entity.HasMany(s => s.Usuarios).WithMany(u => u.Sistemas);
             });
+
+            //Tabela Eventos
+            modelBuilder.Entity<Eventos>(entity => {
+                entity.HasMany(e => e.Sistemas).WithMany(s => s.Eventos);
+            });
         }
     }
 }
