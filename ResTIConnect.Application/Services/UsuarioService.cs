@@ -20,20 +20,39 @@ public class UsuarioService : IUsuarioService
 
     public List<UsuarioViewModel> GetAll()
     {
-        var usuarios = _context.Usuarios.Include(u => u.Sistemas).Include(u => u.Endereco).ToList();
-        return usuarios.Select(u => new UsuarioViewModel
+        var usuarios = _context.Usuarios.Include(u => u.Sistemas).Include(u => u.Endereco).Include(u => u.Perfis).ToList();
+
+        List<UsuarioViewModel> listaUsuarios = new List<UsuarioViewModel>();
+
+        //usando a funcao getBy id
+        foreach (var usuario in usuarios)
         {
-            UsuarioId = u.UsuarioId,
-            Nome = u.Nome,
-            Email = u.Email,
-            Endereco = _enderecoService.GetByIdWithoutUsers(u.EnderecoId) ?? new EnderecoUserViewModel(),
-             SistemasId = u.Sistemas != null ? u.Sistemas.Select(s => s.SistemaId).ToList() : new List<int>()
-        }).ToList();
+            try
+            {
+                var user = GetById(usuario.UsuarioId);
+                if (user != null)
+                    listaUsuarios.Add(user);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        return listaUsuarios;
+        //  return usuarios.Select(u => new UsuarioViewModel
+        // {
+        //     UsuarioId = u.UsuarioId,
+        //     Nome = u.Nome,
+        //     Email = u.Email,
+        //     Endereco = _enderecoService.GetByIdWithoutUsers(u.EnderecoId) ?? new EnderecoUserViewModel(),
+        //      SistemasId = u.Sistemas != null ? u.Sistemas.Select(s => s.SistemaId).ToList() : new List<int>(),
+        //         PerfisId = u.Perfis != null ? u.Perfis.Select(p => p.PerfilId).ToList() : new List<int>()
+        // }).ToList();
     }
 
     public UsuarioViewModel? GetById(int id)
     {
-        var usuario = _context.Usuarios.Include(u => u.Sistemas).Include(u => u.Endereco).FirstOrDefault(u => u.UsuarioId == id);
+        var usuario = _context.Usuarios.Include(u => u.Sistemas).Include(u => u.Endereco).Include(u => u.Perfis).FirstOrDefault(u => u.UsuarioId == id);
         if (usuario == null)
         {
             throw new Exception("Usuário não encontrado");
@@ -45,16 +64,24 @@ public class UsuarioService : IUsuarioService
             Email = usuario.Email,
             
             Endereco = _enderecoService.GetByIdWithoutUsers(usuario.EnderecoId) ?? new EnderecoUserViewModel(),
-            SistemasId = usuario.Sistemas != null ? usuario.Sistemas.Select(s => s.SistemaId).ToList() : new List<int>()
+            SistemasId = usuario.Sistemas != null ? usuario.Sistemas.Select(s => s.SistemaId).ToList() : new List<int>(),
+            PerfisId = usuario.Perfis != null ? usuario.Perfis.Select(p => p.PerfilId).ToList() : new List<int>()
+
         };
     }
 
     public int Create(NewUsuarioSistemaInputModel usuario)
     {
         var endereco = _context.Enderecos.Find(usuario.EnderecoId);
+        var perfisExistentes = _context.Perfis.Where(p => usuario.PerfisId.Contains(p.PerfilId)).ToList();
         if (endereco == null)
         {
             throw new Exception("Endereço não encontrado");
+        }
+
+        if(perfisExistentes == null || perfisExistentes.Count != usuario.PerfisId.Count)
+        {
+            throw new Exception("Perfil não encontrado");
         }
         var novoUsuario = new Usuarios
         {
@@ -73,7 +100,9 @@ public class UsuarioService : IUsuarioService
                 Protocolo = usuario.Sistema.Protocolo,
                 DataHoraInicioIntegracao = usuario.Sistema.DataHoraInicioIntegracao,
                 Status = usuario.Sistema.Status
-            } } : new List<Sistema>()
+            } } : new List<Sistema>(),
+            Perfis = perfisExistentes
+
         };
 
         if (endereco.Usuarios == null)
@@ -121,6 +150,7 @@ public class UsuarioService : IUsuarioService
     public int CreateUserWithExistingSystem(NewUsuarioInputModel usuario)
     {
         var endereco = _context.Enderecos.Find(usuario.EnderecoId);
+        var perfisExistentes = _context.Perfis.Where(p => usuario.PerfisId.Contains(p.PerfilId)).ToList();
         if (endereco == null)
         {
             throw new Exception("Endereço não encontrado");
@@ -130,6 +160,10 @@ public class UsuarioService : IUsuarioService
         {
             throw new Exception("Sistema não encontrado");
         }
+        if(perfisExistentes == null || perfisExistentes.Count != usuario.PerfisId.Count)
+        {
+            throw new Exception("Perfil não encontrado");
+        }
         var novoUsuario = new Usuarios
         {
             Nome = usuario.Nome,
@@ -138,7 +172,8 @@ public class UsuarioService : IUsuarioService
             Telefone = usuario.Telefone,
             Endereco = endereco,
             EnderecoId = endereco.EnderecoId,
-            Sistemas = new List<Sistema> { sistema }
+            Sistemas = new List<Sistema> { sistema },
+            Perfis = perfisExistentes
         };
 
         if (endereco.Usuarios == null)
@@ -176,4 +211,37 @@ public class UsuarioService : IUsuarioService
         sistema.Usuarios.Add(usuario);
         _context.SaveChanges();
     }
+
+    public void UpdateUserLinkPerfil(int UsuarioId, int PerfilId)
+    {
+         var usuario = _context.Usuarios.Include(u => u.Perfis).FirstOrDefault(u => u.UsuarioId == UsuarioId);
+        if (usuario == null)
+        {
+            throw new Exception("Usuário não encontrado");
+        }
+        var perfil = _context.Perfis.Include(p => p.Usuario).FirstOrDefault(p => p.PerfilId == PerfilId);
+        if (perfil == null)
+        {
+            throw new Exception("Perfil não encontrado");
+        }
+        if (usuario.Perfis == null)
+        {
+            usuario.Perfis = new List<Perfil>();
+        }
+        
+        if (perfil.Usuario != null)
+        {
+            throw new Exception($"Perfil já vinculado a um usuário");
+        }
+
+        throw new Exception($"Não to gostandoo");
+        perfil.Usuario = usuario;
+        perfil.UsuarioId = 1;
+
+        usuario.Perfis.Add(perfil);
+        
+         _context.SaveChanges();
+
+    }
+    
 }

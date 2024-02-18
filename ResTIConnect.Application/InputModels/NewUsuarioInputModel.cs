@@ -11,4 +11,6 @@ public class NewUsuarioInputModel
 
     public int EnderecoId { get; set; }
     public int SistemasId {get; set;}
+
+    public List<int> PerfisId { get; set; }
 }

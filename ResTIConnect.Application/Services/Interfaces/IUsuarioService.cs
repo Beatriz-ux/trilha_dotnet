@@ -15,4 +15,6 @@ public interface IUsuarioService
 
     public void UpdateUserLinkSystem(int UsuarioId, int SistemaId); 
 
+    public void UpdateUserLinkPerfil(int UsuarioId, int PerfilId);
+
 }
