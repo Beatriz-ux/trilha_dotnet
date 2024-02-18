@@ -1,7 +1,8 @@
-﻿namespace ResTIConnect.Application.InputModels;
+﻿using ResTIConnect.Domain.Entities;
 
-//esse vai ser a classe que vai receber um novo usario e linkar a um sistema existente
-public class NewUsuarioInputModel
+namespace ResTIConnect.Application.InputModels;
+
+public class NewUsuarioSistemaInputModel
 {
     public int UsuarioId { get; set; }
     public string Nome { get; set; }
@@ -10,5 +11,6 @@ public class NewUsuarioInputModel
     public string Telefone { get; set; }
 
     public int EnderecoId { get; set; }
-    public int SistemasId {get; set;}
+
+    public NewSistemaSimplesInputModel Sistema { get; set; }
 }

@@ -7,8 +7,12 @@ public interface IUsuarioService
 {
     public List<UsuarioViewModel> GetAll();
     public UsuarioViewModel? GetById(int id);
-    public int Create(NewUsuarioInputModel usuario);
+    public int Create(NewUsuarioSistemaInputModel usuario);
     public void Update(int id, NewUsuarioInputModel usuario);
     public void Delete(int id);
+
+    public int CreateUserWithExistingSystem (NewUsuarioInputModel usuario);
+
+    public void UpdateUserLinkSystem(int UsuarioId, int SistemaId); 
 
 }

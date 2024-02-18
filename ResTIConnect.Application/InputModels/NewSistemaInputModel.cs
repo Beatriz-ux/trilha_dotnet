@@ -9,4 +9,6 @@ public class NewSistemaInputModel
     public string? Protocolo {get; set;}
     public DateTimeOffset DataHoraInicioIntegracao {get; set;}
     public string? Status {get; set;}
+    
+    public List<int> UsuariosId {get; set;}
 }

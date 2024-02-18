@@ -15,13 +15,13 @@ public class SistemaController : ControllerBase
         _sistemaService = sistemaService;
     }
 
-    [HttpGet("sistemas")]
+    [HttpGet("/api/sistemas")]
     public IActionResult Get()
     {
         return Ok(Sistemas);
     }
 
-    [HttpGet("sistemas/{id}")]
+    [HttpGet("/api/sistemas/{id}")]
     public IActionResult Get(int id)
     {
         try
@@ -35,14 +35,14 @@ public class SistemaController : ControllerBase
         }
     }
 
-    [HttpPost("sistemas")]
+    [HttpPost("/api/sistemas")]
     public IActionResult Post([FromBody] NewSistemaInputModel sistema)
     {
         _sistemaService.Create(sistema);
         return CreatedAtAction(nameof(Get), sistema);
     }
 
-    [HttpPut("sistemas/{id}")]
+    [HttpPut("/api/sistemas/{id}")]
     public IActionResult Put(int id, [FromBody] NewSistemaInputModel sistema)
     {
         if(_sistemaService.GetById(id) == null) return NoContent();
@@ -50,7 +50,7 @@ public class SistemaController : ControllerBase
         return Ok(_sistemaService.GetById(id));
     }
 
-    [HttpDelete("sistemas/{id}")]
+    [HttpDelete("/api/sistemas/{id}")]
     public IActionResult Delete(int id)
     {
         if(_sistemaService.GetById(id) == null) return NoContent();

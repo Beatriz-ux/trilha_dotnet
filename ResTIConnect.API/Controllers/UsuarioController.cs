@@ -32,8 +32,8 @@ public class UsuarioController : ControllerBase
         return Ok(usuario);
     }
 
-    [HttpPost("api/usuario")]
-    public IActionResult Post([FromBody] NewUsuarioInputModel usuario)
+    [HttpPost("api/usuario-sistema/create")]
+    public IActionResult Post([FromBody] NewUsuarioSistemaInputModel usuario)
     {
         try
         {
@@ -45,6 +45,35 @@ public class UsuarioController : ControllerBase
         {
             return BadRequest(e.Message);
         }
+    }
+
+    [HttpPost("api/usuario-with-system")]
+    public IActionResult Post([FromBody] NewUsuarioInputModel usuario)
+    {
+        try
+        {
+            var id = _usuarioService.CreateUserWithExistingSystem(usuario);
+            var newUsuario = _usuarioService.GetById(id);
+            return CreatedAtAction(nameof(Get), new { id = id }, newUsuario);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpPut("api/usuario-sistema/link")]
+    public IActionResult Post([FromBody] NewLinkUsuarioSistema usuario)
+    {
+        try
+        {
+            _usuarioService.UpdateUserLinkSystem(usuario.UsuarioId, usuario.SistemaId);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+        return NoContent();
     }
 
     [HttpPut("api/usuario/{id}")]
