@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
+using ResTIConnect.Domain.Entities;
 using ResTIConnect.Infra.Data.Context;
 using ResTIConnect.Infra.Data.Models;
 
@@ -21,11 +22,26 @@ namespace ResTIConnect.Application.Services
         }
         public int Create(NewPerfilInputModel perfil)
         {
+
             var _perfil = new Perfil
             {
                 Descricao = perfil.Descricao,
                 Permissoes = perfil.Permissoes
+
             };
+
+            if (perfil.UsuarioId != null)
+            {
+                var usuarioEncontrado = _context.Usuarios.Find(perfil.UsuarioId);
+                if (usuarioEncontrado != null)
+                {
+                    _perfil.UsuarioId = perfil.UsuarioId;
+                    _perfil.Usuario = usuarioEncontrado;
+                }else
+                {
+                    throw new Exception("Usuário não encontrado");
+                }
+            }
             _context.Perfis.Add(_perfil);
 
             _context.SaveChanges();
@@ -56,8 +72,11 @@ namespace ResTIConnect.Application.Services
             {
                 PerfilId = m.PerfilId,
                 Descricao = m.Descricao,
-                Permissoes = m.Permissoes
+                Permissoes = m.Permissoes,
+                UsuarioId = m.UsuarioId
+                
             }).ToList();
+           
 
             return _perfis;
 
@@ -71,7 +90,9 @@ namespace ResTIConnect.Application.Services
             {
                 PerfilId = _perfil.PerfilId,
                 Descricao = _perfil.Descricao,
-                Permissoes = _perfil.Permissoes
+                Permissoes = _perfil.Permissoes,
+                UsuarioId = _perfil.UsuarioId
+
             };
             return PerfilViewModel;
         }

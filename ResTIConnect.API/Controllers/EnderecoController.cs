@@ -20,7 +20,7 @@ public class EnderecoController : ControllerBase
         return Ok(enderecos);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("api/{id}")]
     public IActionResult Get(int id)
     {
         var endereco = _enderecoService.GetById(id);
@@ -45,14 +45,14 @@ public class EnderecoController : ControllerBase
         }
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("api/{id}")]
     public IActionResult Put(int id, [FromBody] NewEnderecoInputModel endereco)
     {
         _enderecoService.Update(id, endereco);
         return NoContent();
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("api/{id}")]
     public IActionResult Delete(int id)
     {
         try
