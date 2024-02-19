@@ -11,4 +11,9 @@
     <Folder Include="ViewModels/" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Financa.Infrastructure\Financa.Infrastructure.csproj" />
+    <ProjectReference Include="..\Financa.Core\Financa.Core.csproj" />
+  </ItemGroup>
+
 </Project>
