@@ -90,6 +90,19 @@ public class UsuarioController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("api/usuario-perfil/link")]
+    public IActionResult Post([FromBody] NewUsuarioPerfilInputModel usuario)
+    {
+        try
+        {
+            _usuarioService.UpdateUserLinkPerfil(usuario.UsuarioId, usuario.PerfilId);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+        return NoContent();
+    }
     [HttpDelete("api/usuario/{id}")]
     public IActionResult Delete(int id)
     {

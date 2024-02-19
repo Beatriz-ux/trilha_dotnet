@@ -8,4 +8,5 @@ public class UsuarioViewModel
     
     public EnderecoUserViewModel Endereco { get; set; }
     public List<int> SistemasId { get; set; }
+    public List<int> PerfisId { get; set; }
 }

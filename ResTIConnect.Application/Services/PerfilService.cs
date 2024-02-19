@@ -37,6 +37,8 @@ namespace ResTIConnect.Application.Services
                 {
                     _perfil.UsuarioId = perfil.UsuarioId;
                     _perfil.Usuario = usuarioEncontrado;
+                    usuarioEncontrado.Perfis.Add(_perfil);
+                    
                 }else
                 {
                     throw new Exception("Usuário não encontrado");
