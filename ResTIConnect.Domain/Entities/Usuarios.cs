@@ -11,4 +11,6 @@ public class Usuarios : BaseEntity
 
     public Endereco? Endereco { get; set; }
     public ICollection<Sistema>? Sistemas { get; set; }
+
+    public ICollection<Perfil> Perfis { get; set; } = new List<Perfil>();
 }

@@ -50,6 +50,12 @@ namespace ResTIConnect.Infra.Data.Context
             modelBuilder.Entity<Eventos>(entity => {
                 entity.HasMany(e => e.Sistemas).WithMany(s => s.Eventos);
             });
+
+            //Tabela Perfil
+            modelBuilder.Entity<Perfil>()
+            .HasOne(p => p.Usuario) // Um perfil pertence a apenas um usuário
+            .WithMany(u => u.Perfis) // Um usuário pode ter vários perfis
+            .HasForeignKey(p => p.UsuarioId); // Chave estrangeira
         }
     }
 }
