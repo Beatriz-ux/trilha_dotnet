@@ -1,15 +1,12 @@
-﻿namespace ResTIConnect.Domain.Entities;
+﻿namespace ResTIConnect.Application.Services.InputModels;
 
-
-public class Eventos : BaseEntity
+public class NewEventosInputModel
 {
-    public int EventoId { get; set; }
     public string? Tipo { get; set; }
     public string? Descricao { get; set; }
     public int Codigo { get; set; }
     public string? Conteudo { get; set; }
     public DateTimeOffset DataHoraOcorrencia { get; set; }
-    
-    public ICollection<Sistema> Sistemas { get; set;} = new List<Sistema>();
+    public List<int> Sistemas { get; set; }
 
 }

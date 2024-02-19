@@ -8,6 +8,7 @@ builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ISistemaService, SistemaService>();
 builder.Services.AddScoped<IPerfilService, PerfilService>();
+builder.Services.AddScoped<IEventoService, EventoService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>();

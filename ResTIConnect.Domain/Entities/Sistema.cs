@@ -12,4 +12,6 @@ public class Sistema : BaseEntity
     public string? Status { get; set; }
     
     public ICollection<Usuarios>? Usuarios { get; set; }
+
+    public ICollection<Eventos>? Eventos { get;set; } 
 }
