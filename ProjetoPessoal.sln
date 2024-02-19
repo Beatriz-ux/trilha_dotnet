@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financa.Core", "Financa.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financa.Infrastructure", "Financa.Infrastructure\Financa.Infrastructure.csproj", "{10323D02-4D5A-4393-8ABF-89416C119F43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financa.Application", "Financa.Application\Financa.Application.csproj", "{526E7BC7-7252-41FA-881D-8018CABB08CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{10323D02-4D5A-4393-8ABF-89416C119F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10323D02-4D5A-4393-8ABF-89416C119F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10323D02-4D5A-4393-8ABF-89416C119F43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{526E7BC7-7252-41FA-881D-8018CABB08CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{526E7BC7-7252-41FA-881D-8018CABB08CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{526E7BC7-7252-41FA-881D-8018CABB08CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{526E7BC7-7252-41FA-881D-8018CABB08CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
