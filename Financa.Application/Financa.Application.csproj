@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="InputModels/" />
+    <Folder Include="ViewModels/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Financa.Infrastructure\Financa.Infrastructure.csproj" />
+    <ProjectReference Include="..\Financa.Core\Financa.Core.csproj" />
+  </ItemGroup>
+
+</Project>

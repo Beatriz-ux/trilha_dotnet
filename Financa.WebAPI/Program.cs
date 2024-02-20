@@ -1,8 +1,25 @@
+using Financa.Application.Services;
+using Financa.Application.Services.Interfaces;
+using Financa.Infrastructure;
 using Financa.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
+// builder.Services.AddScoped<IObjetivoService, ObjetivoService>();
+
 // Add services to the container.
-builder.Services.AddSingleton<DataBaseFake>();
+builder.Services.AddDbContext<AppDbContext>(
+    options =>
+    {
+        var connectionString = builder.Configuration.GetConnectionString("FinancaDb");
+
+        var serverVersion = ServerVersion.AutoDetect(connectionString);
+
+        options.UseMySql(connectionString, serverVersion);
+    });
+// builder.Services.AddDbContext<AppDbContext>();
+
 builder.Services.AddControllers();
 
 

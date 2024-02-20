@@ -13,18 +13,26 @@ public class AppDbContext : DbContext
     public DbSet<Investimento> Investimentos { get; set; }
     public DbSet<Objetivo> Objetivo { get; set; }
 
-
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
     //nova tabela custoTransacao
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public void EnsureDatabaseCreated()
+    {
+        Database.EnsureCreated();
+    }
+
+    //A conexão vai se feita pela camada de web, com a variavel de conexão no .json
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
         var connectionString = "server=localhost;user=usuario;password=Beto@9999;database=projetopessoal;";
-        //var connectionString = "server=192.168.1.77;user=usuario;password=Beto@9999;database=projetopessoal;";
+        var connectionString = "server=192.168.56.1;user=usuario;password=Beto@9999;database=projetopessoal;";
         var serverVersion = ServerVersion.AutoDetect(connectionString);
 
         optionsBuilder.UseMySql(connectionString, serverVersion);
-    }
+    }*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
