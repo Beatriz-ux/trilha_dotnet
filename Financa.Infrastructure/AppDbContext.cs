@@ -13,7 +13,9 @@ public class AppDbContext : DbContext
     public DbSet<Investimento> Investimentos { get; set; }
     public DbSet<Objetivo> Objetivo { get; set; }
 
-
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
     //nova tabela custoTransacao
 
     public void EnsureDatabaseCreated()
