@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IObjetivoService, ObjetivoService>();
+// builder.Services.AddScoped<IObjetivoService, ObjetivoService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(
