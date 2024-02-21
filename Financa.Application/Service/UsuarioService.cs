@@ -93,8 +93,9 @@ public class UsuarioService : IUsuarioService
         usuario.NomeUsuario = model.NomeUsuario;
         usuario.EmailUsuario = model.EmailUsuario;
         usuario.SenhaUsuario = model.SenhaUsuario;
-        // usuario.IdConta = model.Conta.IdConta;
-        // usuario.Conta = contaEncontrada;
+        usuario.Conta = contaEncontrada;
+        usuario.Conta.TipoConta = model.Conta.TipoConta;
+        usuario.Conta.SaldoConta = model.Conta.SaldoConta;
 
         _context.SaveChanges();
     }

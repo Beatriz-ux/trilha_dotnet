@@ -54,7 +54,8 @@ public class AppDbContext : DbContext
 
             entity.HasOne(u => u.Conta)
             .WithOne(c => c.Usuario)
-            .HasForeignKey<Usuario>(u => u.IdConta);
+            .HasForeignKey<Usuario>(u => u.IdConta)
+            .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<CustoFixo>(entity =>
