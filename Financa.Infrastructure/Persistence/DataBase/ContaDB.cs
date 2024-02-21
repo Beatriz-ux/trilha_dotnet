@@ -13,8 +13,8 @@ public class ContaDB : IContaCollection
     }
     public void InicializaDB()
     {
-        Create(new Conta { TipoConta = "Conta Corrente", SaldoConta = 1000 });
-        Create(new Conta { TipoConta = "Conta Poupança", SaldoConta = 500 });
+        // Create(new Conta { TipoConta = "Conta Corrente", SaldoConta = 1000 });
+        // Create(new Conta { TipoConta = "Conta Poupança", SaldoConta = 500 });
     }
     public void Create(Conta entity)
     {

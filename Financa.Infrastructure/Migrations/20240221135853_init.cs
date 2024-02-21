@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Financa.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class id02atualizandoNamespaces : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,26 +43,6 @@ namespace Financa.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Objetivo", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Usuarios",
-                columns: table => new
-                {
-                    IdUsuario = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    NomeUsuario = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    EmailUsuario = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SenhaUsuario = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    IdConta = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuarios", x => x.IdUsuario);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -124,17 +104,17 @@ namespace Financa.Infrastructure.Migrations
                     ValorInvestido = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     DataCompra = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     TaxaDeRetorno = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    IdConta = table.Column<int>(type: "int", nullable: false),
-                    ContaIdConta = table.Column<int>(type: "int", nullable: true)
+                    IdConta = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Investimentos", x => x.IdInvestimento);
                     table.ForeignKey(
-                        name: "FK_Investimentos_Contas_ContaIdConta",
-                        column: x => x.ContaIdConta,
+                        name: "FK_Investimentos_Contas_IdConta",
+                        column: x => x.IdConta,
                         principalTable: "Contas",
-                        principalColumn: "IdConta");
+                        principalColumn: "IdConta",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -160,6 +140,32 @@ namespace Financa.Infrastructure.Migrations
                         column: x => x.ContaIdConta,
                         principalTable: "Contas",
                         principalColumn: "IdConta");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    IdUsuario = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    NomeUsuario = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EmailUsuario = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SenhaUsuario = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IdConta = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.IdUsuario);
+                    table.ForeignKey(
+                        name: "FK_Usuarios_Contas_IdConta",
+                        column: x => x.IdConta,
+                        principalTable: "Contas",
+                        principalColumn: "IdConta",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -204,14 +210,20 @@ namespace Financa.Infrastructure.Migrations
                 column: "ObjetivosId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Investimentos_ContaIdConta",
+                name: "IX_Investimentos_IdConta",
                 table: "Investimentos",
-                column: "ContaIdConta");
+                column: "IdConta");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transacaos_ContaIdConta",
                 table: "Transacaos",
                 column: "ContaIdConta");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_IdConta",
+                table: "Usuarios",
+                column: "IdConta",
+                unique: true);
         }
 
         /// <inheritdoc />
