@@ -7,6 +7,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IObjetivoService, ObjetivoService>();
+builder.Services.AddScoped<IInvestimentoService, InvestimentoService>();
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(
     options =>
