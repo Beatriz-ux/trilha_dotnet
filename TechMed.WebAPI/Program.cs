@@ -14,6 +14,7 @@ builder.Services.AddScoped<IAtendimentoService, AtendimentoService>();
 builder.Services.AddScoped<IExameService, ExameService>();
 
 builder.Services.AddDbContext<TechMedDbContext>(options => {
+    // TODO: Corrigir string de conexão.
     var connectionString = builder.Configuration.GetConnectionString("TechMedDb");
 
     var serverVersion = ServerVersion.AutoDetect(connectionString);
