@@ -54,7 +54,7 @@ public class AppDbContext : DbContext
 
             entity.HasOne(u => u.Conta)
             .WithOne(c => c.Usuario)
-            .HasForeignKey<Conta>(c => c.IdConta);
+            .HasForeignKey<Usuario>(u => u.IdConta);
         });
 
         modelBuilder.Entity<CustoFixo>(entity =>
@@ -97,9 +97,13 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Investimento>(entity =>
         {
             entity.HasKey(e => e.IdInvestimento); //chave pimaria
-
             entity.HasMany(e => e.Objetivos)
             .WithMany(e => e.Investimentos);
+
+            entity.HasOne(e => e.Conta)
+                .WithMany(c => c.Investimentos)
+                .HasForeignKey(e => e.IdConta)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
         });

@@ -19,8 +19,14 @@ public class UsuarioService : IUsuarioService
     public List<UsuarioViewModel> GetAll()
     {
         var usuariosView = _context.Usuarios
-        .Select(usuario => GetById(usuario.IdUsuario))
-        .ToList();
+            .Select(u => new UsuarioViewModel
+            {
+                IdUsuario = u.IdUsuario,
+                NomeUsuario = u.NomeUsuario,
+                EmailUsuario = u.EmailUsuario,
+                IdConta = u.Conta.IdConta
+            })
+            .ToList();
 
         return usuariosView;
     }
@@ -40,7 +46,6 @@ public class UsuarioService : IUsuarioService
             IdUsuario = usuario.IdUsuario,
             NomeUsuario = usuario.NomeUsuario,
             EmailUsuario = usuario.EmailUsuario,
-            SenhaUsuario = usuario.SenhaUsuario,
             IdConta = usuario.IdConta
         };
 
@@ -49,38 +54,37 @@ public class UsuarioService : IUsuarioService
 
     public int Create(NewUsuarioInputModel model)
     {
-        var contaEncontrada = _context.Contas
-            .FirstOrDefault(c => c.IdConta == model.IdConta);
-
-        if (contaEncontrada == null){
-            throw new Exception("Conta não encontrada");
-        }
         var usuario = new Usuario
         {
             NomeUsuario = model.NomeUsuario,
             EmailUsuario = model.EmailUsuario,
             SenhaUsuario = model.SenhaUsuario,
-            IdConta = model.IdConta,
-            Conta = contaEncontrada
+            Conta = new Conta
+            {
+                TipoConta = model.Conta.TipoConta,
+                SaldoConta = model.Conta.SaldoConta
+
+            }
         };
 
         _context.Usuarios.Add(usuario);
         _context.SaveChanges();
 
-        return usuario.IdUsuario;
+        return usuario.Conta.IdConta;
     }
 
     public void Update(int id, NewUsuarioInputModel model)
     {
         var usuario = _context.Usuarios
             .FirstOrDefault(u => u.IdUsuario == id);
-        var contaEncontrada = _context.Contas
-            .FirstOrDefault(c => c.IdConta == model.IdConta);
-
         if (usuario == null)
         {
             throw new Exception("Usuário não encontrado");
         }
+        var contaEncontrada = _context.Contas
+            .FirstOrDefault(c => c.IdConta == usuario.IdConta);
+
+        
         if (contaEncontrada == null)
         {
             throw new Exception("Conta não encontrada");
@@ -89,8 +93,8 @@ public class UsuarioService : IUsuarioService
         usuario.NomeUsuario = model.NomeUsuario;
         usuario.EmailUsuario = model.EmailUsuario;
         usuario.SenhaUsuario = model.SenhaUsuario;
-        usuario.IdConta = model.IdConta;
-        usuario.Conta = contaEncontrada;
+        // usuario.IdConta = model.Conta.IdConta;
+        // usuario.Conta = contaEncontrada;
 
         _context.SaveChanges();
     }

@@ -6,6 +6,5 @@ public class Usuario
     public string? EmailUsuario { get; set; }
     public string? SenhaUsuario { get; set; }
     public int IdConta { get; set; }
-
     public required Conta Conta { get; set; }
 }

@@ -10,6 +10,8 @@ public class Investimento
 
     public int IdConta { get; set; }
 
+    public Conta Conta { get; set; }
+
     public ICollection<Objetivo> Objetivos { get;set; }
 
 }

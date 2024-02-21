@@ -16,12 +16,13 @@ namespace Financa.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.16")
+                .HasAnnotation("ProductVersion", "7.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Financa.Core.Entities.Conta", b =>
                 {
                     b.Property<int>("IdConta")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<decimal>("SaldoConta")
@@ -95,9 +96,6 @@ namespace Financa.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ContaIdConta")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DataCompra")
                         .HasColumnType("datetime(6)");
 
@@ -116,7 +114,7 @@ namespace Financa.Infrastructure.Migrations
 
                     b.HasKey("IdInvestimento");
 
-                    b.HasIndex("ContaIdConta");
+                    b.HasIndex("IdConta");
 
                     b.ToTable("Investimentos");
                 });
@@ -190,6 +188,9 @@ namespace Financa.Infrastructure.Migrations
 
                     b.HasKey("IdUsuario");
 
+                    b.HasIndex("IdConta")
+                        .IsUnique();
+
                     b.ToTable("Usuarios");
                 });
 
@@ -206,17 +207,6 @@ namespace Financa.Infrastructure.Migrations
                     b.HasIndex("ObjetivosId");
 
                     b.ToTable("InvestimentoObjetivo");
-                });
-
-            modelBuilder.Entity("Financa.Core.Entities.Conta", b =>
-                {
-                    b.HasOne("Financa.Core.Entities.Usuario", "Usuario")
-                        .WithOne("Conta")
-                        .HasForeignKey("Financa.Core.Entities.Conta", "IdConta")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Financa.Core.Entities.CustoFixo", b =>
@@ -243,9 +233,13 @@ namespace Financa.Infrastructure.Migrations
 
             modelBuilder.Entity("Financa.Core.Entities.Investimento", b =>
                 {
-                    b.HasOne("Financa.Core.Entities.Conta", null)
+                    b.HasOne("Financa.Core.Entities.Conta", "Conta")
                         .WithMany("Investimentos")
-                        .HasForeignKey("ContaIdConta");
+                        .HasForeignKey("IdConta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Conta");
                 });
 
             modelBuilder.Entity("Financa.Core.Entities.Transacao", b =>
@@ -253,6 +247,17 @@ namespace Financa.Infrastructure.Migrations
                     b.HasOne("Financa.Core.Entities.Conta", null)
                         .WithMany("Transacoes")
                         .HasForeignKey("ContaIdConta");
+                });
+
+            modelBuilder.Entity("Financa.Core.Entities.Usuario", b =>
+                {
+                    b.HasOne("Financa.Core.Entities.Conta", "Conta")
+                        .WithOne("Usuario")
+                        .HasForeignKey("Financa.Core.Entities.Usuario", "IdConta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Conta");
                 });
 
             modelBuilder.Entity("InvestimentoObjetivo", b =>
@@ -279,12 +284,8 @@ namespace Financa.Infrastructure.Migrations
                     b.Navigation("Investimentos");
 
                     b.Navigation("Transacoes");
-                });
 
-            modelBuilder.Entity("Financa.Core.Entities.Usuario", b =>
-                {
-                    b.Navigation("Conta")
-                        .IsRequired();
+                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }
