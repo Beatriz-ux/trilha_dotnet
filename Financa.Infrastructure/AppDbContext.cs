@@ -13,6 +13,8 @@ public class AppDbContext : DbContext
     public DbSet<Investimento> Investimentos { get; set; }
     public DbSet<Objetivo> Objetivo { get; set; }
 
+    public DbSet<Categoria> Categorias { get; set; }
+
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
@@ -92,6 +94,14 @@ public class AppDbContext : DbContext
             entity.Property(e => e.DataTransacao).IsRequired();
             entity.Property(e => e.TipoTransacao);
             entity.Property(e => e.IdConta).IsRequired();
+
+            entity.HasOne(e => e.Conta)
+            .WithMany(c => c.Transacoes)
+            .HasForeignKey(e => e.IdConta);
+
+            entity.HasOne(e => e.Categoria)
+            .WithMany(c => c.Transacoes)
+            .HasForeignKey(e => e.IdCategoria);
 
         });
 
