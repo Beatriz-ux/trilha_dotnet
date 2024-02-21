@@ -15,9 +15,9 @@ public class UsuarioDB : IUsuarioCollection
 
     public void InicializaDB()
     {
-        Create(new Usuario { NomeUsuario = "Alessandro C. Santos" });
-        Create(new Usuario { NomeUsuario = "Alberto de Nóbrega" });
-        Create(new Usuario { NomeUsuario = "Aquiles Prestes" });
+        // Create(new Usuario { NomeUsuario = "Alessandro C. Santos" });
+        // Create(new Usuario { NomeUsuario = "Alberto de Nóbrega" });
+        // Create(new Usuario { NomeUsuario = "Aquiles Prestes" });
     }
 
     public void Create(Usuario entity)

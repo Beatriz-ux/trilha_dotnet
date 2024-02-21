@@ -13,6 +13,8 @@ public class AppDbContext : DbContext
     public DbSet<Investimento> Investimentos { get; set; }
     public DbSet<Objetivo> Objetivo { get; set; }
 
+    public DbSet<Categoria> Categorias { get; set; }
+
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
@@ -50,6 +52,12 @@ public class AppDbContext : DbContext
             entity.Property(e => e.EmailUsuario).IsRequired();
             entity.Property(e => e.SenhaUsuario).IsRequired();
             entity.Property(e => e.IdConta).IsRequired();
+
+
+            entity.HasOne(u => u.Conta)
+            .WithOne(c => c.Usuario)
+            .HasForeignKey<Usuario>(u => u.IdConta)
+            .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<CustoFixo>(entity =>
@@ -87,14 +95,26 @@ public class AppDbContext : DbContext
             entity.Property(e => e.TipoTransacao);
             entity.Property(e => e.IdConta).IsRequired();
 
+            entity.HasOne(e => e.Conta)
+            .WithMany(c => c.Transacoes)
+            .HasForeignKey(e => e.IdConta);
+
+            entity.HasOne(e => e.Categoria)
+            .WithMany(c => c.Transacoes)
+            .HasForeignKey(e => e.IdCategoria);
+
         });
 
         modelBuilder.Entity<Investimento>(entity =>
         {
             entity.HasKey(e => e.IdInvestimento); //chave pimaria
-
             entity.HasMany(e => e.Objetivos)
             .WithMany(e => e.Investimentos);
+
+            entity.HasOne(e => e.Conta)
+                .WithMany(c => c.Investimentos)
+                .HasForeignKey(e => e.IdConta)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
         });

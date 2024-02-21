@@ -3,6 +3,7 @@ using System;
 using Financa.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,29 +11,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Financa.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240221143427_deleteCascade-Usuario-Conta")]
+    partial class deleteCascadeUsuarioConta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("Financa.Core.Entities.Categoria", b =>
-                {
-                    b.Property<int>("CategoriaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("CategoriaId");
-
-                    b.ToTable("Categorias");
-                });
 
             modelBuilder.Entity("Financa.Core.Entities.Conta", b =>
                 {
@@ -155,6 +143,9 @@ namespace Financa.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("ContaIdConta")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DataTransacao")
                         .HasColumnType("datetime(6)");
 
@@ -172,9 +163,7 @@ namespace Financa.Infrastructure.Migrations
 
                     b.HasKey("IdTransacao");
 
-                    b.HasIndex("IdCategoria");
-
-                    b.HasIndex("IdConta");
+                    b.HasIndex("ContaIdConta");
 
                     b.ToTable("Transacaos");
                 });
@@ -258,21 +247,9 @@ namespace Financa.Infrastructure.Migrations
 
             modelBuilder.Entity("Financa.Core.Entities.Transacao", b =>
                 {
-                    b.HasOne("Financa.Core.Entities.Categoria", "Categoria")
+                    b.HasOne("Financa.Core.Entities.Conta", null)
                         .WithMany("Transacoes")
-                        .HasForeignKey("IdCategoria")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Financa.Core.Entities.Conta", "Conta")
-                        .WithMany("Transacoes")
-                        .HasForeignKey("IdConta")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
-
-                    b.Navigation("Conta");
+                        .HasForeignKey("ContaIdConta");
                 });
 
             modelBuilder.Entity("Financa.Core.Entities.Usuario", b =>
@@ -299,11 +276,6 @@ namespace Financa.Infrastructure.Migrations
                         .HasForeignKey("ObjetivosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Financa.Core.Entities.Categoria", b =>
-                {
-                    b.Navigation("Transacoes");
                 });
 
             modelBuilder.Entity("Financa.Core.Entities.Conta", b =>
