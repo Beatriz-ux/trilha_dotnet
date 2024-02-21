@@ -1,74 +1,48 @@
-﻿// using Microsoft.AspNetCore.Mvc;
-// using Financa.Core.Entities;
-// using Financa.Core.Interfaces;
-// using Financa.Infrastructure.Persistence;
-// namespace Financa.WebAPI.Controller;
-// [ApiController]
-// [Route("/api/v0.1/")]
-// public class ObjetivoController: ControllerBase
-// {
-//     private readonly IObjetivo _objetivo;
-//     public ObjetivoController(DataBaseFake dbFake)
-//     {
-//         _objetivo = dbFake.ObjetivoCollection;
-//     }
-//     [HttpGet("objetivo")]
-//     public IActionResult Get()
-//     {
-//         try
-//         {
-//             var objetivos = _objetivo.GetAll().ToList();
-//             return Ok(objetivos);
-//         }
-//         catch (Exception ex)
-//         {
-//             return BadRequest($"Erro: {ex.Message}");
-//         }
-//     }
-//     [HttpGet("{objetivoId}")]
-//     public IActionResult GetByObjetivoId(int objetivoId)
-//     {
-//         try
-//         {
-//             var objetivo = _objetivo.GetById(objetivoId);
-//             return Ok(objetivo);
-//         }
-//         catch (Exception ex)
-//         {
-//             return BadRequest($"Erro: {ex.Message}");
-//         }
-//     }
-//     [HttpPost("objetivo")]
-//     public IActionResult Post([FromBody] Objetivo model)
-//     {
-//         try
-//         {
-//             _objetivo.Create(model);
-//             if (_objetivo != null)
-//             {
-//                 return Ok(model);
-//             }
-//         }
-//         catch (Exception ex)
-//         {
-//             return BadRequest($"Erro: {ex.Message}");
-//         }
-//         return BadRequest();
-//     }
-//     [HttpDelete("{objetivoId}")]
-//     public IActionResult Delete(int objetivoId)
-//     {
-//         try
-//         {
-//             var objetivo = _objetivo.GetById(objetivoId);
-//             _objetivo.Delete(objetivo);
-//             return Ok();
-//         }
-//         catch (Exception ex)
-//         {
-//             return BadRequest($"Erro: {ex.Message}");
-//         }
-//     }
-    
+﻿using Microsoft.AspNetCore.Mvc;
+using Financa.Core.Entities;
+using Financa.Core.Interfaces;
+using Financa.Infrastructure.Persistence;
+using Financa.Application.Services.Interfaces;
+using Financa.Application.InputModels;
+namespace Financa.WebAPI.Controller;
+[ApiController]
+[Route("/api/v0.1/")]
+public class ObjetivoController : ControllerBase
+{
+    private readonly IObjetivoService _objetivoService;
 
-// }
+    public ObjetivoController(IObjetivoService objetivoService)
+    {
+        _objetivoService = objetivoService;
+    }
+
+    [HttpGet("objetivos")]
+    public IActionResult GetAll()
+    {
+        var objetivos = _objetivoService.GetAll();
+        return Ok(objetivos);
+    }
+
+    [HttpGet("objetivos/{id}")]
+    public IActionResult GetById(int id)
+    {
+        var objetivo = _objetivoService.GetById(id);
+        return Ok(objetivo);
+    }
+
+    [HttpPost("objetivos")]
+    public IActionResult Create(NewObjetivoInputModel objetivo)
+    {
+        _objetivoService.Create(objetivo);
+        return Ok(objetivo);
+    }
+
+    [HttpPut("objetivos/{id}")]
+    public IActionResult Update(int id, NewObjetivoInputModel objetivo)
+    {
+        _objetivoService.Update(id, objetivo);
+        return Ok(objetivo);
+    }
+
+
+}
