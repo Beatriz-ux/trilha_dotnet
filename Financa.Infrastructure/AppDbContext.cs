@@ -50,6 +50,11 @@ public class AppDbContext : DbContext
             entity.Property(e => e.EmailUsuario).IsRequired();
             entity.Property(e => e.SenhaUsuario).IsRequired();
             entity.Property(e => e.IdConta).IsRequired();
+
+
+            entity.HasOne(u => u.Conta)
+            .WithOne(c => c.Usuario)
+            .HasForeignKey<Conta>(c => c.IdConta);
         });
 
         modelBuilder.Entity<CustoFixo>(entity =>
