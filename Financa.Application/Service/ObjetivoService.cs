@@ -65,8 +65,6 @@ public class ObjetivoService : IObjetivoService
             Nome = model.Nome,
             Investimentos = new List<Investimento>()
         };
-        objetivo.Investimentos.Add(model.investimento);
-
 
         _context.Objetivo.Add(objetivo);
         _context.SaveChanges();

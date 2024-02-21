@@ -1,8 +1,7 @@
-﻿namespace Financa.Core.Entities;
+﻿namespace Financa.Application.InputModels;
 
-public class Investimento
+public class NewInvestimentoInputModel
 {
-    public int IdInvestimento { get; set; }
     public string Nome { get; set; }
     public decimal ValorInvestido { get; set; }
     public DateTime DataCompra { get; set; }
@@ -10,7 +9,6 @@ public class Investimento
 
     public int IdConta { get; set; }
 
-    public ICollection<Objetivo> Objetivos { get;set; }
+    public ICollection<int> Objetivos { get;set; }
 
 }
-

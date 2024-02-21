@@ -1,6 +1,6 @@
-﻿namespace Financa.Core.Entities;
+﻿namespace Financa.Application.ViewModels;
 
-public class Investimento
+public class InvestimentoViewModel
 {
     public int IdInvestimento { get; set; }
     public string Nome { get; set; }
@@ -10,7 +10,6 @@ public class Investimento
 
     public int IdConta { get; set; }
 
-    public ICollection<Objetivo> Objetivos { get;set; }
+    public ICollection<string> NomesObjetivos { get; set; }
 
 }
-
