@@ -28,15 +28,15 @@ namespace Financa.Application.Services
         {
             throw new NotImplementedException();
         }
-        public ICollection<ContaViewModel> GetContasByCategoria(int categoriaId)
-        {
-            throw new NotImplementedException();
-        }
         public ICollection<ContaViewModel> GetContasByCustoFixoAboveLimit(double limit)
         {
             throw new NotImplementedException();
         }
         public ICollection<ContaViewModel> GetContasByCustoVariavelAboveLimit(double limit)
+        {
+            throw new NotImplementedException();
+        }
+        public ICollection<DateTime> GetDiasWithMoreThanXTransacoes(int x)
         {
             throw new NotImplementedException();
         }
