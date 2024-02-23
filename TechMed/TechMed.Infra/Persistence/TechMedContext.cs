@@ -13,9 +13,10 @@ public sealed class TechMedContext : DbContext
     {
         Database.EnsureCreated();
     }
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TechMedContext).Assembly);
     }
 }

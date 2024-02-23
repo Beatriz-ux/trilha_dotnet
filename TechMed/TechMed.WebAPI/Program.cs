@@ -5,6 +5,7 @@ using TechMed.Infra.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<TechMedContext>();
 builder.Services.AddScoped<IMedicoService, MedicoService>();
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IAtendimentoService, AtendimentoService>();
