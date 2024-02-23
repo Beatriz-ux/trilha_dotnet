@@ -1,25 +1,21 @@
 using Microsoft.EntityFrameworkCore;
-using TechMed.Aplication.Services;
-using TechMed.Services.Interfaces;
-using TechMed.Insfrastructure.Persistence;
-using TechMed.Insfrastructure.Persistence.Interfaces;
+using TechMed.Application.Services;
+using TechMed.Application.Services.Interfaces;
+using TechMed.Infra.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddSingleton<ITechMedContext, TechMedContext>();
 builder.Services.AddScoped<IMedicoService, MedicoService>();
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IAtendimentoService, AtendimentoService>();
 builder.Services.AddScoped<IExameService, ExameService>();
 
-builder.Services.AddDbContext<TechMedDbContext>(options => {
-    // TODO: Corrigir string de conexão.
+builder.Services.AddDbContext<TechMedContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("TechMedDb");
 
     var serverVersion = ServerVersion.AutoDetect(connectionString);
 
-      options.UseMySql(connectionString, serverVersion);
+    options.UseMySql(connectionString, serverVersion);
 });
 
 builder.Services.AddControllers();
