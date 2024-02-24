@@ -19,7 +19,7 @@ public class CustoFixoController : ControllerBase
     }
 
 
-    [HttpGet ("custoFixo")]
+    [HttpGet("custoFixo")]
     public IActionResult Get()
     {
         try
@@ -34,11 +34,11 @@ public class CustoFixoController : ControllerBase
     }
 
     [HttpGet("custoFixo/{IdCustoFixo}")]
-    public IActionResult GetByCustoFixoId(int custoFixoId)
+    public IActionResult GetByCustoFixoId(int IdCustoFixo)
     {
         try
         {
-            var custoFixo =  _custoFixo.GetById(custoFixoId);
+            var custoFixo = _custoFixo.GetById(IdCustoFixo);
             return Ok(custoFixo);
         }
         catch (Exception ex)
@@ -47,36 +47,43 @@ public class CustoFixoController : ControllerBase
         }
     }
 
-    [HttpPost ("custoFixo")]
+    [HttpPost("custoFixo")]
     public IActionResult Post([FromBody] NewCustoFixoInputModel model)
     {
         try
         {
-            _custoFixo.Create(model);
+            var newId = _custoFixo.Create(model);
 
             if (_custoFixo != null)
             {
-                return Ok(model);
+                return Ok(new { id = newId });
             }
         }
         catch (Exception ex)
         {
+            /*Console.WriteLine("Erro ao salvar as alterações:");
+            Console.WriteLine(ex.Message);
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine("Inner Exception:");
+                Console.WriteLine(ex.InnerException.Message);
+            }*/
             return BadRequest($"Erro: {ex.Message}");
         }
 
         return BadRequest();
     }
 
-    
+
     [HttpDelete("custoFixo/{IdCustoFixo}")]
-    
-    public IActionResult Delete(int custoFixoId)
+
+    public IActionResult Delete(int IdCustoFixo)
     {
         try
         {
-            _custoFixo.Delete(custoFixoId);
+            _custoFixo.Delete(IdCustoFixo);
             return Ok("Custo Fixo deletado com sucesso");
-        
+
         }
         catch (Exception ex)
         {
