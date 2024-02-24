@@ -2,7 +2,7 @@
 using TechMed.Core.Entities;
 
 namespace TechMed.Infra.Persistence;
-public sealed class TechMedContext : DbContext
+public class TechMedContext : DbContext
 {
     public DbSet<Paciente> Pacientes { get; set; }
     public DbSet<Medico> Medicos { get; set; }
@@ -13,7 +13,6 @@ public sealed class TechMedContext : DbContext
     {
         Database.EnsureCreated();
     }
-    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

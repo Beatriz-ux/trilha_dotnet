@@ -10,5 +10,7 @@ public class MedicoConfiguration : IEntityTypeConfiguration<Medico>
         builder
             .ToTable("Medicos")
             .HasKey(m => m.MedicoId);
+        
+        
     }
 }

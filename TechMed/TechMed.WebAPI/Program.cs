@@ -5,13 +5,14 @@ using TechMed.Infra.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<TechMedContext>();
+builder.Services.AddScoped<TechMedContext>();
 builder.Services.AddScoped<IMedicoService, MedicoService>();
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IAtendimentoService, AtendimentoService>();
 builder.Services.AddScoped<IExameService, ExameService>();
 
-builder.Services.AddDbContext<TechMedContext>(options => {
+builder.Services.AddDbContext<TechMedContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("TechMedDb");
 
     var serverVersion = ServerVersion.AutoDetect(connectionString);

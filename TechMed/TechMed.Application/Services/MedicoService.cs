@@ -9,11 +9,9 @@ namespace TechMed.Application.Services;
 public class MedicoService : IMedicoService
 {
   private readonly TechMedContext _context;
-  private readonly IPacienteService _pacienteService;
-  public MedicoService(TechMedContext context, IPacienteService pacienteService)
+  public MedicoService(TechMedContext context)
   {
     _context = context;
-    _pacienteService = pacienteService;
   }
 
   public int Create(NewMedicoInputModel medico)
@@ -79,9 +77,10 @@ public class MedicoService : IMedicoService
   public int CreateAtendimento(int medicoId, NewAtendimentoInputModel atendimento)
   {
     var _medico = GetById(medicoId);
-    // var _paciente = _context.Pacientes.FirstOrDefault(p => p.PacienteId == atendimento.PacienteId);
-    var _paciente = _pacienteService.GetById(atendimento.PacienteId);
-    if(_paciente == null) throw new Exception("Paciente não encontrado");
+    
+    var _paciente = _context.Pacientes.FirstOrDefault(p => p.PacienteId == atendimento.PacienteId);
+    if (_paciente == null) throw new Exception("Paciente não encontrado");
+    
     var _atendimento = new Atendimento
     {
       DataHoraInicio = atendimento.DataHoraInicio,
@@ -91,6 +90,8 @@ public class MedicoService : IMedicoService
       Medico = _medico,
       Paciente = _paciente,
     };
+    _medico.Atendimentos?.Add(_atendimento);
+    _paciente.Atendimentos?.Add(_atendimento);
     _context.Atendimentos.Add(_atendimento);
     _context.SaveChanges();
     return _atendimento.AtendimentoId;

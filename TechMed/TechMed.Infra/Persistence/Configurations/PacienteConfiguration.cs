@@ -10,5 +10,7 @@ public class PacienteConfiguration : IEntityTypeConfiguration<Paciente>
         builder
             .ToTable("Pacientes")
             .HasKey(x => x.PacienteId);
+        
+        
     }
 }

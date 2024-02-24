@@ -29,6 +29,7 @@ public class ExameService : IExameService
             ResultadoDescricao = exame.ResultadoDescricao,
             Atendimento = _atendimento
         };
+        _atendimento.Exames?.Add(_exame);
         _context.Exames.Add(_exame);
         _context.SaveChanges();
         return _exame.ExameId;
@@ -49,7 +50,7 @@ public class ExameService : IExameService
             Local = m.Local,
             DataHora = m.DataHora,
             ResultadoDescricao = m.ResultadoDescricao,
-            Atendimento = _atendimentoService.GetById(m.AtendimentoId)
+            Atendimento = m.Atendimento
         }).ToList();
         if (_exames.Count == 0) throw new Exception("Nenhum exame cadastrado");
         return _exames;

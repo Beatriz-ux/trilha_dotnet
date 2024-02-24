@@ -1,4 +1,5 @@
-﻿using TechMed.Application.InputModels;
+﻿using Microsoft.EntityFrameworkCore;
+using TechMed.Application.InputModels;
 using TechMed.Application.Services.Interfaces;
 using TechMed.Application.ViewModels;
 using TechMed.Core.Entities;
@@ -34,15 +35,18 @@ public class AtendimentoService : IAtendimentoService
 
     public List<AtendimentoViewModel> GetAll()
     {
-        var _atendimentos = _context.Atendimentos.Select(m => new AtendimentoViewModel
+        var _atendimentos = _context.Atendimentos
+            .Include(a => a.Medico)
+            .Include(b => b.Paciente)
+            .Select(m => new AtendimentoViewModel
         {
             AtendimentoId = m.AtendimentoId,
             DataHoraInicio = m.DataHoraInicio,
             DataHoraFim = m.DataHoraFim,
             SuspeitaInicial = m.SuspeitaInicial,
             Diagnostico = m.Diagnostico,
-            Medico = _medicoService.GetById(m.Medico.MedicoId),
-            Paciente = _pacienteService.GetById(m.Paciente.PacienteId)
+            Medico = m.Medico,
+            Paciente = m.Paciente
         }).ToList();
         if (_atendimentos.Count == 0) throw new Exception("Nenhum atendimento cadastrado");
         return _atendimentos;
