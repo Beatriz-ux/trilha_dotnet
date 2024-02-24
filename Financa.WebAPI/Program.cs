@@ -11,6 +11,8 @@ builder.Services.AddScoped<IObjetivoService, ObjetivoService>();
 builder.Services.AddScoped<IInvestimentoService, InvestimentoService>();
 builder.Services.AddScoped<IContaService, ContaService>();
 builder.Services.AddScoped<ICustoFixoService, CustoFixoService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(
     options =>
