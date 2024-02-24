@@ -23,7 +23,9 @@ namespace Financa.Application.Service
             var custoFixo = new CustoFixo
             {
                 ValorParcelaFixo = newCustoFixo.ValorParcelaFixo,
-                DataProximaParcelaFixo = newCustoFixo.DataProximaParcelaFixo
+                DataProximaParcelaFixo = newCustoFixo.DataProximaParcelaFixo,
+                IdConta = newCustoFixo.IdConta,
+                IdCategoria = newCustoFixo.IdCategoria,
 
             };
             _context.CustoFixos.Add(custoFixo);
@@ -45,6 +47,9 @@ namespace Financa.Application.Service
             {
                 ValorParcelaFixo = c.ValorParcelaFixo,
                 DataProximaParcelaFixo = c.DataProximaParcelaFixo,
+                IdConta = c.IdConta,
+                IdCategoria = c.IdCategoria,
+                Conta = c.Conta
             })
             .ToList();
             return custosFixos;
@@ -58,6 +63,9 @@ namespace Financa.Application.Service
             {
                 ValorParcelaFixo = c.ValorParcelaFixo,
                 DataProximaParcelaFixo = c.DataProximaParcelaFixo,
+                IdConta = c.IdConta,
+                IdCategoria = c.IdCategoria,
+                Conta = c.Conta
             })
             .FirstOrDefault();
             if (custoFixo == null)

@@ -1,125 +1,88 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
-// using Financa.Core.Entities;
-// using Financa.Core.Interfaces;
-// using Microsoft.AspNetCore.Mvc;
-// using Financa.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Mvc;
+using Financa.Core.Entities;
+using Financa.Core.Interfaces;
+using Financa.Infrastructure.Persistence;
+using Financa.Application.Services.Interfaces;
+using Financa.Application.InputModels;
+namespace Financa.WebAPI.Controller;
+
+[ApiController]
+[Route("/api/v0.1/")]
+public class CustoVariavelController : ControllerBase
+{
+    private readonly ICustoVariavelService _custoVariavel;
 
 
+    public CustoVariavelController(ICustoVariavelService custoVariavel)
+    {
+        _custoVariavel = custoVariavel;
+    }
 
-// namespace Financa.WebAPI.Controller
 
-// {
-//     [ApiController]
-//     [Route("api/[controller]")]
-//     public class CustoVariavelController : ControllerBase
-//     {
-//         private readonly ICustoVariavelCollection _custoVariavel;
-//         public List<CustoVariavel> _custosVariavel = new List<CustoVariavel>();
+    [HttpGet ("custoVariavel")]
+    public IActionResult Get()
+    {
+        try
+        {
+            var custosVariaveis = _custoVariavel.GetAll().ToList();
+            return Ok(custosVariaveis);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Erro: {ex.Message}");
+        }
+    }
 
-//         public CustoVariavelController(DataBaseFake dbFake)
-//         {
-//             _custoVariavel = dbFake.CustoVariavelCollection;
-//         }
+    [HttpGet("custoVariavel/{IdCustoVariavel}")]
+    public IActionResult GetByCustoVariavelId(int IdCustoVariavel)
+    {
+        try
+        {
+            var custoVariavel =  _custoVariavel.GetById(IdCustoVariavel);
+            return Ok(custoVariavel);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Erro: {ex.Message}");
+        }
+    }
 
-//         [HttpGet()]
-//         public IActionResult Get()
-//         {
-//             try
-//             {
-//                 var custosVariavel = _custoVariavel.GetAll().ToList();
-//                 return Ok(_custoVariavel);
-//             }
-//             catch (Exception ex)
-//             {
-//                 return BadRequest($"Erro: {ex.Message}");
-//             }
-//         }
+    [HttpPost ("custoVariavel")]
+    public IActionResult Post([FromBody] NewCustoVariavelModelInputModel model)
+    {
+        try
+        {
+            _custoVariavel.Create(model);
 
-//         [HttpGet("{custoVariavelId}")]
-//         public IActionResult GetByCustoVariaveloId(int custoVariavelId)
-//         {
-//             try
-//             {
-//                 var custoVariavel = _custoVariavel.GetById(custoVariavelId);
-//                 return Ok(custoVariavel);
-//             }
-//             catch (Exception ex)
-//             {
-//                 return BadRequest($"Erro: {ex.Message}");
-//             }
-//         }
+            if (_custoVariavel != null)
+            {
+                return Ok(model);
+            }
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Erro: {ex.Message}");
+        }
 
-//         [HttpPost()]
-//         public IActionResult Post([FromBody] CustoVariavel model)
-//         {
-//             try
-//             {
-//                 _custoVariavel.Create(model);
+        return BadRequest();
+    }
 
-//                 if (_custoVariavel != null)
-//                 {
-//                     return Ok(model);
-//                 }
-//                 else
-//                 {
-//                     return BadRequest("Erro ao tentar criar um custo variável.");
-//                 }
-//             }
-//             catch (Exception ex)
-//             {
-//                 return BadRequest($"Erro: {ex.Message}");
-//             }
-//         }
+    
+    [HttpDelete("custoVariavel/{IdCustoVariavel}")]
+    
+    public IActionResult Delete(int IdCustoVariavel)
+    {
+        try
+        {
+            _custoVariavel.Delete(IdCustoVariavel);
+            return Ok("Custo variável deletado com sucesso");
+        
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Erro: {ex.Message}");
+        }
 
-//         [HttpPut("{custoVariavelId}")]
-//         public IActionResult Put([FromBody] CustoVariavel model)
-//         {
-//             try
-//             {
-//                 var custoVariavel = _custoVariavel.GetById(model.IdCustoVariavel);
-//                 if (custoVariavel != null)
-//                 {
-//                     custoVariavel.ValorVariavel = model.ValorVariavel;
-//                     custoVariavel.DataPlanejadaVariavel = model.DataPlanejadaVariavel;
-//                     custoVariavel.IdConta = model.IdConta;
-//                     custoVariavel.IdCategoria = model.IdCategoria;
-//                     _custoVariavel.Update(custoVariavel);
-//                     return Ok(custoVariavel);
-//                 }
-//                 else
-//                 {
-//                     return BadRequest("Custo variável não encontrado.");
-//                 }
-//             }
-//             catch (Exception ex)
-//             {
-//                 return BadRequest($"Erro: {ex.Message}");
-//             }
-//         }
+    }
 
-//         [HttpDelete("{custoVariavelId}")]
-//         public IActionResult Delete(int custoVariavelId)
-//         {
-//             try
-//             {
-//                 var custoVariavel = _custoVariavel.GetById(custoVariavelId);
-//                 if (custoVariavel != null)
-//                 {
-//                     _custoVariavel.Delete(custoVariavel);
-//                     return Ok("Custo variável deletado com sucesso.");
-//                 }
-//                 else
-//                 {
-//                     return BadRequest("Custo variável não encontrado.");
-//                 }
-//             }
-//             catch (Exception ex)
-//             {
-//                 return BadRequest($"Erro: {ex.Message}");
-//             }
-//         }
-//     }
-// }
+}

@@ -9,6 +9,5 @@ namespace Financa.Application.InputModels
         public int ParcelasRestantesFixo { get; set; }
         public int IdConta { get; set; }
         public int IdCategoria { get; set; }
-        public Conta Conta { get; set; }
     }
 }
