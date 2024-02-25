@@ -1,4 +1,5 @@
 ﻿using Financa.Application.InputModels;
+using Financa.Application.Services.Interfaces;
 using Financa.Application.ViewModels;
 using Financa.Core.Entities;
 using Financa.Infrastructure;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Financa.Application.Service;
 
-public class TransacaoService
+public class TransacaoService : ITransacaoService
 {
     private readonly AppDbContext _context;
     public TransacaoService(AppDbContext context)

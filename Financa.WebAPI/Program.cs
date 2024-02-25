@@ -2,9 +2,7 @@ using Financa.Application.Service;
 using Financa.Application.Services;
 using Financa.Application.Services.Interfaces;
 using Financa.Infrastructure;
-using Financa.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IObjetivoService, ObjetivoService>();
@@ -14,6 +12,7 @@ builder.Services.AddScoped<ICustoFixoService, CustoFixoService>();
 builder.Services.AddScoped<ICustoVariavelService, CustoVariavelService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<ITransacaoService, TransacaoService>();
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(
     options =>
