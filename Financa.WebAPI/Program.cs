@@ -13,6 +13,7 @@ builder.Services.AddScoped<ICustoVariavelService, CustoVariavelService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<ITransacaoService, TransacaoService>();
+builder.Services.AddScoped<IRelatorioService, RelatorioService>();
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(
     options =>
