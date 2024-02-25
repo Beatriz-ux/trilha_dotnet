@@ -18,7 +18,7 @@ public class ContaService : IContaService
 
     public List<ContaViewModel> GetAll()
     {
-        var contas = _context.Contas.Include(i => i.IdConta).ToList();
+        var contas = _context.Contas.ToList();
         List<ContaViewModel> contasViewModels = new List<ContaViewModel>();
 
         foreach (var conta in contas)
