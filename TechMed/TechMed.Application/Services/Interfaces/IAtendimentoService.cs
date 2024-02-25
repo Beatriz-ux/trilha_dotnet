@@ -9,6 +9,7 @@ public interface IAtendimentoService
    public Atendimento GetById(int id);
    public List<AtendimentoViewModel> GetByPacienteId(int pacienteId);
    public List<AtendimentoViewModel> GetByMedicoId(int medicoId);
+   public List<AtendimentoViewModel> GetByPeriodo(DateTime dataInicio, DateTime dataFim);
    public int Create(NewAtendimentoInputModel atendimento);
    public void Update(int id, NewAtendimentoInputModel endereco);
    public void Delete(int id);

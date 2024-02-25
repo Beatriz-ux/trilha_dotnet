@@ -105,4 +105,20 @@ public class AtendimentoService : IAtendimentoService
         _context.Atendimentos.Update(_atendimento);
         _context.SaveChanges();
     }
+    public List<AtendimentoViewModel> GetByPeriodo(DateTime inicio, DateTime fim)
+    {
+        var _atendimentos = _context.Atendimentos.Where(m => m.DataHoraInicio >= inicio && m.DataHoraFim <= fim).Select(m => new AtendimentoViewModel
+        {
+            AtendimentoId = m.AtendimentoId,
+            DataHoraInicio = m.DataHoraInicio,
+            DataHoraFim = m.DataHoraFim,
+            SuspeitaInicial = m.SuspeitaInicial,
+            Diagnostico = m.Diagnostico,
+            Medico = _medicoService.GetById(m.Medico.MedicoId),
+            Paciente = _pacienteService.GetById(m.Paciente.PacienteId)
+        }).ToList();
+        if (_atendimentos.Count == 0) throw new Exception("Nenhum atendimento cadastrado nesse período");
+        return _atendimentos;
+    }
+
 }
