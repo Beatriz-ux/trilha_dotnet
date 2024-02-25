@@ -74,4 +74,46 @@ public class AtendimentoController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpGet("medico/{id}/atendimentos")]
+    public IActionResult GetByMedicoId(int id)
+    {
+        try
+        {
+            var atendimentos = _atendimentoService.GetByMedicoId(id);
+            return Ok(atendimentos);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("paciente/{id}/atendimentos")]
+    public IActionResult GetByPacienteId(int id)
+    {
+        try
+        {
+            var atendimentos = _atendimentoService.GetByPacienteId(id);
+            return Ok(atendimentos);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("atendimentos/porPeriodo/{inicio}/{fim}")]
+    public IActionResult GetByPeriodo(DateTime inicio, DateTime fim)
+    {
+        try
+        {
+            var atendimentos = _atendimentoService.GetByPeriodo(inicio, fim);
+            return Ok(atendimentos);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
