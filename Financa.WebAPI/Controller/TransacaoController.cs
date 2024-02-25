@@ -1,76 +1,71 @@
-﻿// using Microsoft.AspNetCore.Mvc;
-// using Financa.Core.Entities;
-// using Financa.Core.Interfaces;
-// using Financa.Infrastructure.Persistence;
-// namespace Financa.WebAPI.Controller;
+﻿using Financa.Application.InputModels;
+using Financa.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-// [ApiController]
-// [Route("/api/v0.1/")]
-// public class TransacaoController: ControllerBase
-// {
-//     private readonly ITransacaoCollection _transacao;
+namespace Financa.WebAPI.Controller;
 
-//     public TransacaoController(DataBaseFake dbFake)
-//     {
-//         _transacao = dbFake.TransacaoCollection;
-//     }
+[ApiController]
+[Route("/api/v0.1/")]
+public class TransacaoController : ControllerBase
+{
+    private readonly ITransacaoService _transacaoService;
 
-//      [HttpGet ("transacao")]
-//     public IActionResult Get()
-//     {
-//         try
-//         {
-//             var transacoes = _transacao.GetAll().ToList();
-//             return Ok(transacoes);
-//         }
-//         catch (Exception ex)
-//         {
-//             return BadRequest($"Erro: {ex.Message}");
-//         }
-//     }
+    public TransacaoController(ITransacaoService transacaoService)
+    {
+        _transacaoService = transacaoService;
+    }
 
-//     [HttpGet("{transacaoId}")]
-//     public IActionResult GetById(int id){
-//         return Ok(_transacao.GetById(id));
-//     }
+    [HttpGet("transacoes")]
+    public IActionResult GetAll()
+    {
+        try
+        {
+            var transacoes = _transacaoService.GetAll();
+            return Ok(transacoes);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
-//     [HttpPost ("transacao")]
-//     public IActionResult Post([FromBody] Transacao transacao){
-//         try
-//         {
-//             _transacao.Create(transacao);
-//             return Ok(transacao);
-//         }
-//         catch (Exception ex)
-//         {
-//             return BadRequest($"Erro: {ex.Message}");
-//         }
-//     }
-
-//     [HttpDelete("{transacaoId}")]
-//     public IActionResult Delete(int transacaoId){
-//         try
-//         {
-//             var transacao = _transacao.GetById(transacaoId);
-//             if (transacao != null)
-//             {
-//                 _transacao.Delete(transacao);
-//                 return Ok();
-//             }
-
-//             return BadRequest("transacao não encontrada");
+    [HttpGet("transacoes/{id}")]
+    public IActionResult GetById(int id)
+    {
+        try{
+            var transacao = _transacaoService.GetById(id);
+            return Ok(transacao);
+        } catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
         
-//         }
-//         catch (Exception ex)
-//         {
-//             return BadRequest($"Erro: {ex.Message}");
-//         }
-//     }
+        
+    }
 
+    [HttpPost("transacoes")]
+    public IActionResult Create(NewTransacaoInputModel transacao)
+    {
+        try{
+            _transacaoService.Create(transacao);
+        } catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+        
+        return Ok(transacao);
+    }
 
-
-   
-
-
-
-// }
+    [HttpPut("transacoes/{id}")]
+    public IActionResult Update(int id, NewTransacaoInputModel transacao)
+    {
+        try{
+            _transacaoService.Update(id, transacao);
+        } catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+        
+        return Ok(transacao);
+    }
+}
