@@ -4,25 +4,33 @@ using Financa.Infrastructure;
 
 namespace Financa.Application.Services
 {
-    public class RelatorioService
+    public class RelatorioService : IRelatorioService
     {
         private readonly AppDbContext _context;
         private readonly ICategoriaService _categoriaService;
         private readonly IContaService _contaService;
         private readonly ICustoFixoService _custoFixoService;
+        private readonly ICustoVariavelService _custoVariavelService;
+        private readonly ITransacaoService _transacaoService;
 
-        public RelatorioService(AppDbContext context, ICategoriaService categoriaService, IContaService contaService, ICustoFixoService custoFixoService)
+        public RelatorioService(AppDbContext context, ICategoriaService categoriaService, IContaService contaService, ICustoFixoService custoFixoService, ICustoVariavelService custoVariavelService, ITransacaoService transacaoService)
         {
             _context = context;
             _categoriaService = categoriaService;
             _contaService = contaService;
             _custoFixoService = custoFixoService;
+            _custoVariavelService = custoVariavelService;
+            _transacaoService = transacaoService;
         }
 
-        // public ICollection<TransacoesViewModel> GetTransicoesByCategoria(int categoriaId)
-        // {
-        //     throw new NotImplementedException();
-        // }
+        public ICollection<TransacaoViewModel> GetTransicoesByCategoria(string categoriaNome)
+        {
+            var transacoes = _transacaoService.GetAll();
+            var transacoesByCategoria = transacoes
+                .Where(t => t.Categoria.Nome == categoriaNome)
+                .ToList();
+            return transacoesByCategoria;
+        }
         public ICollection<ContaViewModel> GetContasByCustoFixoAboveLimit(double limit)
         {
             var contas = _contaService.GetAll();
@@ -30,7 +38,7 @@ namespace Financa.Application.Services
             var contasComCustoFixoAcimaDoLimite = contas
                 .Where(c => custosFixos
                     .Where(cf => cf.IdConta == c.IdConta)
-                    .Sum(cf => cf.ValorFixo) > limit)
+                    .Sum(cf => cf.ValorParcelaFixo) > limit)
                 .ToList();
             return contasComCustoFixoAcimaDoLimite;
         }
@@ -47,7 +55,13 @@ namespace Financa.Application.Services
         }
         public ICollection<DateTime> GetDiasWithMoreThanXTransacoes(int x)
         {
-            throw new NotImplementedException();
+            var transacoes = _transacaoService.GetAll();
+            var diasComMaisDeXTransacoes = transacoes
+                .GroupBy(t => t.DataTransacao)
+                .Where(g => g.Count() > x)
+                .Select(g => g.Key)
+                .ToList();
+            return diasComMaisDeXTransacoes;
         }
     }
 }
