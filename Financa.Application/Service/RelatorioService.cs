@@ -25,11 +25,25 @@ namespace Financa.Application.Services
         // }
         public ICollection<ContaViewModel> GetContasByCustoFixoAboveLimit(double limit)
         {
-            throw new NotImplementedException();
+            var contas = _contaService.GetAll();
+            var custosFixos = _custoFixoService.GetAll();
+            var contasComCustoFixoAcimaDoLimite = contas
+                .Where(c => custosFixos
+                    .Where(cf => cf.IdConta == c.IdConta)
+                    .Sum(cf => cf.ValorFixo) > limit)
+                .ToList();
+            return contasComCustoFixoAcimaDoLimite;
         }
         public ICollection<ContaViewModel> GetContasByCustoVariavelAboveLimit(double limit)
         {
-            throw new NotImplementedException();
+            var contas = _contaService.GetAll();
+            var custosVariaveis = _custoVariavelService.GetAll();
+            var contasComCustoVariavelAcimaDoLimite = contas
+                .Where(c => custosVariaveis
+                    .Where(cv => cv.IdConta == c.IdConta)
+                    .Sum(cv => cv.ValorVariavel) > limit)
+                .ToList();
+            return contasComCustoVariavelAcimaDoLimite;
         }
         public ICollection<DateTime> GetDiasWithMoreThanXTransacoes(int x)
         {
