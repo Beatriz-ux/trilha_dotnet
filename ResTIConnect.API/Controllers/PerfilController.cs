@@ -7,11 +7,13 @@ using ResTIConnect.Infra.Data.Models;
 using ResTIConnect.Application.Services.Interfaces;
 using ResTIConnect.Application.ViewModels;
 using ResTIConnect.Application.InputModels;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ResTIConnect.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class PerfilController : ControllerBase
     {
         private readonly IPerfilService _perfilService;

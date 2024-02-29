@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services;
 using ResTIConnect.Application.Services.Interfaces;
 namespace ResTIConnect.API.Controllers;
+[ApiController]
+
+[Authorize]
 
 public class RelatorioController : ControllerBase
 {

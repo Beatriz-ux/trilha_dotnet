@@ -27,8 +27,4 @@
     <ProjectReference Include="..\ResTIConnect.Application\ResTIConnect.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middleware/" />
-  </ItemGroup>
-
 </Project>
