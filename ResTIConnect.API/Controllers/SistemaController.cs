@@ -7,8 +7,6 @@ using ResTIConnect.Application.ViewModels;
 namespace ResTIConnect.API.Controllers;
 [ApiController]
 
-[Authorize]
-
 public class SistemaController : ControllerBase
 {
     private readonly ISistemaService _sistemaService;

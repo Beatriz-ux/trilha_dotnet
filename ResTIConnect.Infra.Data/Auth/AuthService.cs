@@ -56,4 +56,22 @@ public class AuthService : IAuthService
 
       return stringToken;
    }
+   public string GetRoleFromToken(string token)
+    {
+        var key = _configuration["Jwt:Key"];
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var validationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = securityKey,
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+
+        var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
+        var roleClaim = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+        return roleClaim?.Value;
+    }
 }

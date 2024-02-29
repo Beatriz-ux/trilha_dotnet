@@ -5,7 +5,7 @@ using ResTIConnect.Application.Services.Interfaces;
 
 namespace ResTIConnect.API.Controllers;
 [ApiController]
-[Authorize]
+
 public class EnderecoController : ControllerBase
 {
     private readonly IEnderecoService _enderecoService;

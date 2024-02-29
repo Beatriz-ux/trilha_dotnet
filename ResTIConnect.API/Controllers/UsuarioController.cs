@@ -5,8 +5,6 @@ using ResTIConnect.Application.Services.Interfaces;
 
 namespace ResTIConnect.API.Controllers;
 [ApiController]
-[Authorize]
-
 public class UsuarioController : ControllerBase
 {
     private readonly IUsuarioService _usuarioService;

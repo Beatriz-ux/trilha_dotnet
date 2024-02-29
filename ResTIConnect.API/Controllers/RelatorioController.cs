@@ -6,8 +6,6 @@ using ResTIConnect.Application.Services.Interfaces;
 namespace ResTIConnect.API.Controllers;
 [ApiController]
 
-[Authorize]
-
 public class RelatorioController : ControllerBase
 {
     private readonly RelatoriosService _relatoriosService;

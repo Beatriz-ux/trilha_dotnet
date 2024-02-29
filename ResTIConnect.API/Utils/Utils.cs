@@ -20,4 +20,5 @@ public abstract class Utils
             return Convert.ToBase64String(hash);
         }
     }
+
 }
