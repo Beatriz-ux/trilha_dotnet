@@ -23,7 +23,7 @@ public class LoginService : ILoginService
         var token = "";
         if (usuario == null)
         {
-            throw new Exception("Usuário não encontrado");
+            throw new Exception("Email ou senha inválidos.");
         }
         if(usuario.Email == "admin@admin.com"){
             token = _authService.GenerateJwtToken(usuario.Email, "admin");

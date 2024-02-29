@@ -19,8 +19,8 @@ public class LoginController : ControllerBase
         login.Senha = Utils.Utils.EncryptPassword(login.Senha);
         try
         {
-            var id = _loginService.Login(login);
-            return Ok(id);
+            var resp = _loginService.Login(login);
+            return Ok(resp);
         }
         catch (Exception e)
         {
