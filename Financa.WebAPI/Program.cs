@@ -1,3 +1,4 @@
+using Financa.Application;
 using Financa.Application.Service;
 using Financa.Application.Services;
 using Financa.Application.Services.Interfaces;
@@ -14,6 +15,7 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<ITransacaoService, TransacaoService>();
 builder.Services.AddScoped<IRelatorioService, RelatorioService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(
     options =>
