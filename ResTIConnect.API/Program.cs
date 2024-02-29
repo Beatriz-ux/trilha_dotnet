@@ -1,5 +1,7 @@
 using ResTIConnect.Application.Services;
 using ResTIConnect.Application.Services.Interfaces;
+using ResTIConnect.Infra.Data.Auth;
+using ResTIConnect.Infra.Data.Auth.Interfaces;
 using ResTIConnect.Infra.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,7 @@ builder.Services.AddScoped<IPerfilService, PerfilService>();
 builder.Services.AddScoped<IEventoService, EventoService>();
 builder.Services.AddScoped<RelatoriosService, RelatoriosService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>();
