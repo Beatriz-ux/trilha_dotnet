@@ -14,14 +14,14 @@ public class LoginService : ILoginService
         _context = context;
     }
 
-    public int Login(NewLoginInputModel login)
+    public string Login(NewLoginInputModel login)
     {
         var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == login.Email && u.Senha == login.Senha);
         if (usuario == null)
         {
-            throw new Exception("Usuário não encontrado");
+            throw new Exception("Email ou senha inválidos.");
         }
-        return usuario.UsuarioId;
+        return "Usuário logado com sucesso.";
     }
 
 }
