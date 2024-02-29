@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ResTIConnect.Application.InputModels;
 using ResTIConnect.Application.Services.InputModels;
 using ResTIConnect.Application.Services.Interfaces;
 namespace ResTIConnect.API.Controllers;
 [ApiController]
-
 public class EventoController : ControllerBase
 {
     private readonly IEventoService _eventoService;
@@ -14,7 +14,7 @@ public class EventoController : ControllerBase
         _eventoService = eventoService;
     }
 
-    [HttpGet("api/api/evento")]
+    [HttpGet("api/evento")]
     public IActionResult Get()
     {
         var eventos = _eventoService.GetAll();
@@ -32,7 +32,7 @@ public class EventoController : ControllerBase
         return Ok(evento);
     }
 
-    [HttpPost("api/api/evento")]
+    [HttpPost("api/evento")]
     public IActionResult Post([FromBody] NewEventosInputModel evento)
     {
         try
@@ -53,7 +53,7 @@ public class EventoController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("api/evento-with-sistema")]
+    [HttpPut("api/evento/evento-with-sistema")]
     public IActionResult Put([FromBody] NewEventoSistemaInputModel evento)
     {
         try
@@ -81,7 +81,7 @@ public class EventoController : ControllerBase
         }
     }
 
-    [HttpDelete("api/evento-with-sistema")]
+    [HttpDelete("api/evento/evento-with-sistema")]
     public IActionResult Delete([FromBody] NewEventoSistemaInputModel evento)
     {
         try
