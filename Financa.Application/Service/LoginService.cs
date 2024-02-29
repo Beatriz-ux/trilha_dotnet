@@ -10,12 +10,10 @@ public class LoginService: ILoginService
 {
     private readonly AppDbContext _context;
     private readonly AuthService _authService;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    public LoginService(AppDbContext context, AuthService authService, IHttpContextAccessor contextAccessor)
+    public LoginService(AppDbContext context, AuthService authService)
     {
         _context = context;
         _authService = authService;
-        _httpContextAccessor = contextAccessor;
     }
 
     public string Login(NewLoginInputModel login)

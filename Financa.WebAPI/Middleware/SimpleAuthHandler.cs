@@ -1,4 +1,5 @@
 using System.Text;
+using Financa.Application.Auth;
 
 namespace Financa.WebAPI.Middleware;
 
@@ -12,6 +13,12 @@ public class SimpleAuthHandler
 
     public async Task InvokeAsync(HttpContext context)
     {
+        var authService = context.RequestServices.GetService<AuthService>();
+        if(context.Request.Path.StartsWithSegments("/api/login"))
+        {
+            await _next(context);
+            return;
+        }
         //verificar se existe a chave Authorization no Header da requisição
         if (!context.Request.Headers.ContainsKey("Authorization"))
         {
@@ -22,23 +29,38 @@ public class SimpleAuthHandler
         }
 
         //verificar se o valor da chave Authorization é igual
-        //ao username e password esperados "Basic username:password"
         var header = context.Request.Headers["Authorization"].ToString();
-        var encondedUsernamePassword = header.Substring(6);
-        var decodedUsernamePassword = Encoding.UTF8.GetString(Convert.FromBase64String(encondedUsernamePassword));
-        string[] usernamePassword = decodedUsernamePassword.Split(":");
-        var email = usernamePassword[0];
-        var role = usernamePassword[1];
+        //ao username e password esperados "Basic username:password"
+        // var encondedUsernamePassword = header.Substring(6);
+        // var decodedUsernamePassword = Encoding.UTF8.GetString(Convert.FromBase64String(encondedUsernamePassword));
+        // string[] usernamePassword = decodedUsernamePassword.Split(":");
+        // var email = usernamePassword[0];
+        var role = authService.GetRoleFromToken(header);
 
-        if (email == "admin" && role == "admin")
+        if (role == "admin")
         {
             await _next(context);
             return;
         }
-        if (email != "admin" || role != "admin")
+
+        if (context.Request.Path.StartsWithSegments("/api/Conta") && role != "admin")
         {
-            context.Response.StatusCode = 401;
-            await context.Response.WriteAsync("Invalid username or password");
+            context.Response.StatusCode = 403;
+            await context.Response.WriteAsync("Forbidden");
+            return;
+        }
+
+        if (context.Request.Path.StartsWithSegments("/api/Transacao") && role != "admin")
+        {
+            context.Response.StatusCode = 403;
+            await context.Response.WriteAsync("Forbidden");
+            return;
+        }
+
+        if (context.Request.Path.StartsWithSegments("/api/Usuario") && role != "admin")
+        {
+            context.Response.StatusCode = 403;
+            await context.Response.WriteAsync("Forbidden");
             return;
         }
 
