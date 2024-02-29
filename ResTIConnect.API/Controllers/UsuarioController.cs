@@ -35,6 +35,7 @@ public class UsuarioController : ControllerBase
     [HttpPost("api/usuario-sistema/create")]
     public IActionResult Post([FromBody] NewUsuarioSistemaInputModel usuario)
     {
+        usuario.Senha = Utils.Utils.EncryptPassword(usuario.Senha);
         try
         {
             var id = _usuarioService.Create(usuario);
@@ -50,6 +51,7 @@ public class UsuarioController : ControllerBase
     [HttpPost("api/usuario-with-system")]
     public IActionResult Post([FromBody] NewUsuarioInputModel usuario)
     {
+        usuario.Senha = Utils.Utils.EncryptPassword(usuario.Senha);
         try
         {
             var id = _usuarioService.CreateUserWithExistingSystem(usuario);
@@ -79,6 +81,7 @@ public class UsuarioController : ControllerBase
     [HttpPut("api/usuario/{id}")]
     public IActionResult Put(int id, [FromBody] NewUsuarioInputModel usuario)
     {
+        usuario.Senha = Utils.Utils.EncryptPassword(usuario.Senha);
         try
         {
             _usuarioService.Update(id, usuario);
