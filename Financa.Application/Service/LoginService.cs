@@ -1,25 +1,38 @@
-﻿using Financa.Application.InputModels;
+﻿using Financa.Application.Auth;
+using Financa.Application.InputModels;
 using Financa.Application.Services.Interfaces;
 using Financa.Infrastructure;
+using Microsoft.AspNetCore.Http;
 
 namespace Financa.Application;
 
 public class LoginService: ILoginService
 {
     private readonly AppDbContext _context;
-    public LoginService(AppDbContext context)
+    private readonly AuthService _authService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    public LoginService(AppDbContext context, AuthService authService, IHttpContextAccessor contextAccessor)
     {
         _context = context;
+        _authService = authService;
+        _httpContextAccessor = contextAccessor;
     }
 
     public string Login(NewLoginInputModel login)
     {
+        string _token = "";
         var usuario = _context.Usuarios.FirstOrDefault(u => u.EmailUsuario == login.Email && u.SenhaUsuario == login.Senha);
         if (usuario == null)
         {
             throw new Exception("Email ou senha inválidos!");
         }
-        return "Login efetuado com sucesso!";
+        if(usuario.EmailUsuario == "admin"){
+            _token = _authService.GenerateJwtToken(usuario.EmailUsuario, "admin");
+        }
+        else{
+            _token = _authService.GenerateJwtToken(usuario.EmailUsuario, "user");
+        }
+        
+        return _token;
     }
-
 }
