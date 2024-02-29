@@ -10,6 +10,7 @@ builder.Services.AddScoped<ISistemaService, SistemaService>();
 builder.Services.AddScoped<IPerfilService, PerfilService>();
 builder.Services.AddScoped<IEventoService, EventoService>();
 builder.Services.AddScoped<RelatoriosService, RelatoriosService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>();
