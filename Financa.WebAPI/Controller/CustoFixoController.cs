@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Financa.WebAPI.Controller;
 
 [ApiController]
-[Authorize]
+
 [Route("/api/v0.1/")]
 public class CustoFixoController : ControllerBase
 {

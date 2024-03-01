@@ -2,11 +2,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Financa.Infrastructure.Auth.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Financa.Application.Auth;
-public class AuthService
+namespace Financa.Infrastructure.Auth;
+public class AuthService : IAuthService
 {
    private readonly IConfiguration _configuration;
 

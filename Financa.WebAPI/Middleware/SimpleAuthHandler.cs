@@ -1,5 +1,5 @@
 using System.Text;
-using Financa.Application.Auth;
+using Financa.Infrastructure.Auth.Interface;
 
 namespace Financa.WebAPI.Middleware;
 
@@ -13,7 +13,7 @@ public class SimpleAuthHandler
 
     public async Task InvokeAsync(HttpContext context)
     {
-        var authService = context.RequestServices.GetService<AuthService>();
+        var authService = context.RequestServices.GetRequiredService<IAuthService>();
         if(context.Request.Path.StartsWithSegments("/api/login"))
         {
             await _next(context);

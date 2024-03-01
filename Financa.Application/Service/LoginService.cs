@@ -1,7 +1,7 @@
-﻿using Financa.Application.Auth;
-using Financa.Application.InputModels;
+﻿using Financa.Application.InputModels;
 using Financa.Application.Services.Interfaces;
 using Financa.Infrastructure;
+using Financa.Infrastructure.Auth.Interface;
 using Microsoft.AspNetCore.Http;
 
 namespace Financa.Application;
@@ -9,8 +9,8 @@ namespace Financa.Application;
 public class LoginService: ILoginService
 {
     private readonly AppDbContext _context;
-    private readonly AuthService _authService;
-    public LoginService(AppDbContext context, AuthService authService)
+    private readonly IAuthService _authService;
+    public LoginService(AppDbContext context, IAuthService authService)
     {
         _context = context;
         _authService = authService;

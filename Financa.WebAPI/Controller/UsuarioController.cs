@@ -10,7 +10,7 @@ namespace Financa.WebAPI.Controller;
 
 
 [ApiController]
-[Authorize]
+
 [Route("/api/v0.1/")]
 public class UsuarioController : ControllerBase{
     private readonly IUsuarioService _usuarioService;
