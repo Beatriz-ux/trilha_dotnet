@@ -14,16 +14,20 @@ public class Data
     public const int FORMATO_12H = 12;
     public const int FORMATO_24H = 24;
 
-   
+
 
     public Data(int dia, int mes, int ano)
     {
+        if (!dataValid(dia, mes, ano))
+        {
+            return;
+        }
         Dia = dia;
         Mes = mes;
         Ano = ano;
     }
 
-    public Data(int dia, int mes, int ano, int hora, int minuto, int segundo):this(dia, mes, ano)
+    public Data(int dia, int mes, int ano, int hora, int minuto, int segundo) : this(dia, mes, ano)
     {
         Hora = hora;
         Minuto = minuto;
@@ -38,9 +42,9 @@ public class Data
             Console.WriteLine("");
             return;
         }
-        if(formato == 12)
+        if (formato == 12)
         {
-            if(Hora > 12)
+            if (Hora > 12)
             {
                 Console.Write($"{Hora - 12}:{Minuto}:{Segundo} PM");
             }
@@ -51,10 +55,23 @@ public class Data
         }
         else
         {
-        Console.WriteLine($"{Hora}:{Minuto}:{Segundo}");
+            Console.WriteLine($"{Hora}:{Minuto}:{Segundo}");
         }
-            Console.WriteLine("");
+        Console.WriteLine("");
 
+    }
+
+    public bool dataValid(int dia, int mes, int ano)
+    {
+        try
+        {
+            DateTime data = new DateTime(ano, mes, dia);
+            return true;
+        }catch(Exception)
+        {
+            Console.WriteLine("Data inválida!");
+            return false;
+        }
     }
 
 }
