@@ -29,6 +29,10 @@ public class Data
 
     public Data(int dia, int mes, int ano, int hora, int minuto, int segundo) : this(dia, mes, ano)
     {
+        if (!horaValid(hora, minuto, segundo))
+        {
+            return;
+        }
         Hora = hora;
         Minuto = minuto;
         Segundo = segundo;
@@ -72,6 +76,26 @@ public class Data
             Console.WriteLine("Data inválida!");
             return false;
         }
+    }
+
+    public bool horaValid(int hora, int minuto, int segundo)
+    {
+        if (hora < 0 || hora > 23)
+        {
+            Console.WriteLine("Hora inválida!");
+            return false;
+        }
+        if (minuto < 0 || minuto > 59)
+        {
+            Console.WriteLine("Minuto inválido!");
+            return false;
+        }
+        if (segundo < 0 || segundo > 59)
+        {
+            Console.WriteLine("Segundo inválido!");
+            return false;
+        }
+        return true;
     }
 
 }
